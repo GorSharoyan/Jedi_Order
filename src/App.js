@@ -1,7 +1,7 @@
 import SwitchRouter from "./components/Routes/SwithcRouter";
 
 //components
-import Navbar from "./components/Navabar/Navabar";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
