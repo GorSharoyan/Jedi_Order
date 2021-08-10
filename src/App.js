@@ -1,12 +1,13 @@
 import SwitchRouter from "./components/Routes/SwithcRouter";
 
+//components
+import Navbar from "./components/Navabar/Navabar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       <h1>Hi I'm here</h1>
-      </header>
+      <Navbar />
+       <SwitchRouter />
     </div>
   );
 }
