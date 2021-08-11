@@ -1,5 +1,7 @@
 import React from "react";
-// import "./Footer.css";
+import { makeStyles } from "@material-ui/core/styles";
+import { red } from "@material-ui/core/colors";
+import "./Footer.css";
 
 /*Icons*/
 // import LocationOnIcon from "@material-ui/icons/LocationOn";
@@ -10,6 +12,30 @@ import React from "react";
 // import TwitterIcon from "@material-ui/icons/Twitter";
 // import GitHubIcon from "@material-ui/icons/GitHub";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#aaa",
+  },
+}));
+
 export default function Footer() {
-  return <div>Your custom footer</div>;
+  const classes = useStyles();
+  return (
+    <>
+      <div className={classes.root}>
+        Your custom footer
+        <div className={classes.contacts}>
+          <ul>
+            <li>{/* <LocationOnIcon /> */}</li>
+            <li>{/* <PhoneIcon /> */}</li>
+            <li>{/* <MailIcon /> */}</li>
+            <li>{/* <FacebookIcon /> */}</li>
+            <li>{/* <LinkedInIcon /> */}</li>
+            <li>{/* <TwitterIcon /> */}</li>
+            <li>{/* <GitHubIcon /> */}</li>
+          </ul>
+        </div>
+      </div>
+    </>
+  );
 }
