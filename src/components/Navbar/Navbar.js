@@ -1,31 +1,10 @@
-import React from 'react'
+import React from "react";
 
 /* UI */
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import GroupIcon from '@material-ui/icons/GroupIcon';
-
-
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//       flexGrow: 1,
-//     },
-   
-//     }));
-
-//   export default function Navbar() {
-//       const classes=useStyles();
-
-//       return(
-//           <h1>Barlus</h1>
-
-//       )
-
-
-//   } 
-
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,9 +19,11 @@ export default function Navbar() {
 
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        <GroupIcon /> Select the side
-      </Button>
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      ></Button>
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
