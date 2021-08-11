@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -23,7 +24,9 @@ export default function Navbar() {
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
-      ></Button>
+      >
+        <AssignmentIndIcon />
+      </Button>
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
