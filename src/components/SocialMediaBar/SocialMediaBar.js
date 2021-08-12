@@ -6,16 +6,22 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import GitHubIcon from "@material-ui/icons/GitHub";
+import { Grid } from "@material-ui/core";
+
+//components
+import CopyRightBar from "../CopyRightBar/CopyRightBar";
 
 //ReactRouter
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    padding: "25px",
+    padding: "10px",
+    display: "flex",
+    flexDirection: "column",
   },
   element: {
-    padding: "5px",
+    padding: "3px",
   },
 });
 
@@ -23,10 +29,15 @@ export default function SocialMediaBar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <FacebookIcon className={classes.element} />
-      <LinkedInIcon className={classes.element} />
-      <TwitterIcon className={classes.element} />
-      <GitHubIcon className={classes.element} />
+      <div>
+        <FacebookIcon className={classes.element} />
+        <LinkedInIcon className={classes.element} />
+        <TwitterIcon className={classes.element} />
+        <GitHubIcon className={classes.element} />
+      </div>
+      <div>
+        <CopyRightBar className={classes.element} />
+      </div>
     </div>
   );
 }
