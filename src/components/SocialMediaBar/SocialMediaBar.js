@@ -6,7 +6,6 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import { Grid } from "@material-ui/core";
 
 //components
 import CopyRightBar from "../CopyRightBar/CopyRightBar";
