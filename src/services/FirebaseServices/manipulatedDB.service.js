@@ -1,4 +1,4 @@
-import firebase, { database } from "../Libraries/firebase";
+import firebase, { database } from "../../Libraries/firebase";
 
 //function for creating data nad sending to firebase
 

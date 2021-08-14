@@ -6,9 +6,17 @@ import { Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 
+//services
+import { createJedi } from "../../services/FirebaseServices/jedi.service";
+
 export default function ForceUserForm() {
   return (
-    <Formik initialValues={{}} onSubmit={() => {}}>
+    <Formik
+      initialValues={{}}
+      onSubmit={(values) => {
+        createJedi(values);
+      }}
+    >
       {(props) => (
         <form onSubmit={props.handleSubmit}>
           <div>
