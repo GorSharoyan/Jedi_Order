@@ -1,5 +1,11 @@
 import React from "react";
+import ForceUserCard from "../../components/ForceUserCard/ForceUserCard";
 
 export default function DarkSide() {
-  return <div>Siths</div>;
+  return (
+    <div>
+      Siths
+      <ForceUserCard />
+    </div>
+  );
 }

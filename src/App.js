@@ -11,7 +11,6 @@ function App() {
     <div className="App">
       <Header />
       <SwitchRouter />
-      <Link to="/">Home</Link>
       <Footer />
     </div>
   );
