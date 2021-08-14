@@ -1,7 +1,11 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Router } from "react-router";
+// import { BrowserRouter as Router } from "react-router";
+
+//pages
 import Home from "../../pages/Home/Home";
+
+//components
 
 export default function SwitchRouter() {
   return (
