@@ -34,8 +34,12 @@ export default function Navbar() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Join the Dark Side</MenuItem>
-        <MenuItem onClick={handleClose}>The Light Side you Join</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/lightSide">Join the Dark Side</Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/darkSide">The Light Side you Join</Link>
+        </MenuItem>
       </Menu>
     </div>
   );
