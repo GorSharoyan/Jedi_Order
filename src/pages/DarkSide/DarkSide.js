@@ -6,7 +6,7 @@ export default function DarkSide() {
   return (
     <div>
       Siths
-      <ForceUserCard />
+      {/* <ForceUserCard /> */}
       <ForceUserForm />
     </div>
   );

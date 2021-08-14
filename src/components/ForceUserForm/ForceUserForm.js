@@ -12,7 +12,7 @@ export default function ForceUserForm() {
       {(props) => (
         <form onSubmit={props.handleSubmit}>
           <div>
-            <h4>Position:</h4>
+            <h4>Name</h4>
             <TextField
               // label={country}
               id="outlined-basic"
@@ -25,7 +25,76 @@ export default function ForceUserForm() {
             />
             {props.errors.name && <div id="feedback">{props.errors.name}</div>}
           </div>
-
+          <div>
+            <h4>Rank</h4>
+            <TextField
+              // label={country}
+              id="outlined-basic"
+              type="text"
+              variant="outlined"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.description}
+              name="position"
+            />
+            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+          </div>
+          <div>
+            <h4>Age</h4>
+            <TextField
+              // label={country}
+              id="outlined-basic"
+              type="text"
+              variant="outlined"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.description}
+              name="position"
+            />
+            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+          </div>
+          <div>
+            <h4>Race</h4>
+            <TextField
+              // label={country}
+              id="outlined-basic"
+              type="text"
+              variant="outlined"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.description}
+              name="position"
+            />
+            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+          </div>
+          <div>
+            <h4>Combat Style</h4>
+            <TextField
+              // label={country}
+              id="outlined-basic"
+              type="text"
+              variant="outlined"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.description}
+              name="position"
+            />
+            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+          </div>
+          <div>
+            <h4>Bio</h4>
+            <TextField
+              // label={country}
+              id="outlined-basic"
+              type="text"
+              variant="outlined"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.description}
+              name="position"
+            />
+            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+          </div>
           <div>
             <Button
               variant="contained"
