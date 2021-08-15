@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "../../pages/Home/Home";
 import DarkSide from "../../pages/DarkSide/DarkSide";
 import LightSide from "../../pages/LightSide/LightSide";
+import ForceUserForm from "../ForceUserForm/ForceUserForm";
 
 //components
 
@@ -21,6 +22,9 @@ export default function SwitchRouter() {
         </Route>
         <Route exact path="/lightSide">
           <LightSide />
+        </Route>
+        <Route exact path="/register">
+          <ForceUserForm />
         </Route>
       </Switch>
     </main>

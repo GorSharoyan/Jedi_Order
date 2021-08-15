@@ -4,7 +4,9 @@ import { useState } from "react";
 import { useLocation } from "react-router";
 
 //UI
-import { Card } from "@material-ui/core";
+import { Button, Card, CardContent } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 
 //components
 import ForceUserCard from "../ForceUserCard/ForceUserCard";
@@ -12,6 +14,7 @@ import ForceUserCard from "../ForceUserCard/ForceUserCard";
 //services
 import { getAllJedis } from "../../services/FirebaseServices/jedi.service";
 import { getAllSiths } from "../../services/FirebaseServices/sith.service";
+import { Link } from "react-router-dom";
 
 export default function ForceUserCardGenerator() {
   const location = useLocation().pathname;
@@ -27,19 +30,40 @@ export default function ForceUserCardGenerator() {
       getAllSiths().then((element) => {
         let siths = Object.values(element);
         setForceUsers(siths);
-
-        // console.log(forceUser);
       });
     }
   }, []);
 
-  return forceUsers.map((element) => {
-    return (
-      <ForceUserCard
-        name={element.name}
-        rank={element.rank}
-        bio={element.bio}
-      />
-    );
-  });
+  return (
+    <Grid
+      container
+      direction="row"
+      justifyContent="space-around"
+      alignItems="baseline"
+    >
+      <>
+        {forceUsers.map((element) => {
+          return (
+            <ForceUserCard
+              name={element.name}
+              rank={element.rank}
+              bio={element.bio}
+            />
+          );
+        })}
+      </>
+      <>
+        <Card>
+          <p>Join the {location}</p>
+          <CardContent>
+            <Button>
+              <Link to="/register">
+                <AddBoxIcon />
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </>
+    </Grid>
+  );
 }
