@@ -1,5 +1,5 @@
 import React from "react";
-import ForceUserCardGenerator from "../../components/ForceUserCardGenerator/ForceUserCardgGenerator";
+import ForceUserCardGenerator from "../../components/ForceUserCardGenerator/ForceUserCardGenerator";
 //comonents
 import ForceUserForm from "../../components/ForceUserForm/ForceUserForm";
 
@@ -7,7 +7,7 @@ export default function LightSide() {
   return (
     <div>
       Jedis are here
-      <ForceUserForm />
+      {/* <ForceUserForm /> */}
       <ForceUserCardGenerator />
     </div>
   );

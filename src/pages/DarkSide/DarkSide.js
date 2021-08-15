@@ -1,6 +1,6 @@
 import React from "react";
 import ForceUserCard from "../../components/ForceUserCard/ForceUserCard";
-import ForceUserCardGenerator from "../../components/ForceUserCardGenerator/ForceUserCardgGenerator";
+import ForceUserCardGenerator from "../../components/ForceUserCardGenerator/ForceUserCardGenerator";
 import ForceUserForm from "../../components/ForceUserForm/ForceUserForm";
 
 export default function DarkSide() {
@@ -8,7 +8,7 @@ export default function DarkSide() {
     <div>
       Siths are here
       {/* <ForceUserCard /> */}
-      <ForceUserForm />
+      {/* <ForceUserForm /> */}
       <ForceUserCardGenerator />
     </div>
   );

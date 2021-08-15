@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ForceUserCard() {
+export default function ForceUserCard({ name, rank, bio }) {
   const classes = useStyles();
 
   return (
@@ -30,21 +30,11 @@ export default function ForceUserCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Master Yoda
+            {rank}
+            {name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            <p>
-              Force-sensitives, also known as Force-users, Force wielders, or
-              Force Adepts, were sentient and non-sentient lifeforms that
-              possessed a strong connection to the mystical energy field known
-              as the Force. Though the term applied to anyone who was sensitive
-              to the spiritual energy, those who harnessed powers given by the
-              dark side of the Force were known as dark side adepts. The progeny
-              of Force-sensitives could inherit their progenitor's power, as was
-              the case in the Skywalker family. Anakin Skywalker, the Chosen
-              One, passed his strength to his children, the twins Luke Skywalker
-              and Leia Organa, who, in turn, passed it to her son Ben Solo.
-            </p>
+            <p>{bio}</p>
           </Typography>
         </CardContent>
       </CardActionArea>
