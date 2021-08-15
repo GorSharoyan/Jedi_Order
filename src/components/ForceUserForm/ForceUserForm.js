@@ -2,8 +2,6 @@ import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
-// import { useEffect } from "react";
-// import { useState } from "react";
 
 //lodash
 import _ from "lodash";
