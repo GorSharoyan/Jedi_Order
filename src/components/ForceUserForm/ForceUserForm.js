@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik, Formik } from "formik";
+import { Formik } from "formik";
 import { Link } from "react-router-dom";
 
 //UI
@@ -109,7 +109,7 @@ export default function ForceUserForm() {
               color="primary"
               onClick={props.handleSubmit}
             >
-              <Link to="/">Submit</Link>
+              <Link to="/">Create the Force User</Link>
             </Button>
           </div>
         </form>
