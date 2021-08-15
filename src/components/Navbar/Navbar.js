@@ -35,10 +35,10 @@ export default function Navbar() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/lightSide">Join the Dark Side</Link>
+          <Link to="/lightSide">The Light Side you Join</Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link to="/darkSide">The Light Side you Join</Link>
+          <Link to="/darkSide">Join the Dark Side</Link>
         </MenuItem>
       </Menu>
     </div>

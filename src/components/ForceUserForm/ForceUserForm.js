@@ -40,7 +40,6 @@ let useStyles = makeStyles({
 export default function ForceUserForm() {
   let classes = useStyles();
   let location = useLocation().pathname;
-  console.log(location);
 
   return (
     <Formik
@@ -53,10 +52,13 @@ export default function ForceUserForm() {
         bio: "",
       }}
       onSubmit={(values) => {
-        if (location === "lightSide") {
+        if (location === "/lightSide") {
           createJedi(values, _.uniqueId("@jedi"));
-        } else if (location === "darkSide") {
+          console.log("Jedi is created");
+          console.log(location);
+        } else if (location === "/darkSide") {
           createSith(values, _.uniqueId("@sith"));
+          console.log("Sith is created");
         }
       }}
     >
