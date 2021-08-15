@@ -8,7 +8,7 @@ export default function DarkSide() {
     <div>
       Siths are here
       {/* <ForceUserCard /> */}
-      {/* <ForceUserForm /> */}
+      <ForceUserForm />
       <ForceUserCardGenerator />
     </div>
   );
