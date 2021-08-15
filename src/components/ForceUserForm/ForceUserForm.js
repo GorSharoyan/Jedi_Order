@@ -1,6 +1,9 @@
 import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router";
+// import { useEffect } from "react";
+// import { useState } from "react";
 
 //lodash
 import _ from "lodash";
@@ -18,6 +21,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 
 //services
 import { createJedi } from "../../services/FirebaseServices/jedi.service";
+import { createSith } from "../../services/FirebaseServices/sith.service";
 
 let useStyles = makeStyles({
   formField: {
@@ -35,6 +39,8 @@ let useStyles = makeStyles({
 
 export default function ForceUserForm() {
   let classes = useStyles();
+  let location = useLocation().pathname;
+  console.log(location);
 
   return (
     <Formik
@@ -47,7 +53,11 @@ export default function ForceUserForm() {
         bio: "",
       }}
       onSubmit={(values) => {
-        createJedi(values, _.uniqueId("@jedi"));
+        if (location === "lightSide") {
+          createJedi(values, _.uniqueId("@jedi"));
+        } else if (location === "darkSide") {
+          createSith(values, _.uniqueId("@sith"));
+        }
       }}
     >
       {(props) => (
