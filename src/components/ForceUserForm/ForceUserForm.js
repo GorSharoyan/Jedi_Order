@@ -2,6 +2,9 @@ import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 
+//lodash
+import _ from "lodash";
+
 //UI
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
@@ -14,7 +17,7 @@ export default function ForceUserForm() {
     <Formik
       initialValues={{}}
       onSubmit={(values) => {
-        createJedi(values);
+        createJedi(values, _.uniqueId("@jedi"));
       }}
     >
       {(props) => (
