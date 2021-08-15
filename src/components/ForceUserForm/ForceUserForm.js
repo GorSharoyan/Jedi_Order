@@ -6,115 +6,167 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 
 //UI
-import { TextField } from "@material-ui/core";
+import { Grid, TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
+import SchoolIcon from "@material-ui/icons/School";
+import FingerprintIcon from "@material-ui/icons/Fingerprint";
+import ChildCareIcon from "@material-ui/icons/ChildCare";
+import SportsHandballIcon from "@material-ui/icons/SportsHandball";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
 //services
 import { createJedi } from "../../services/FirebaseServices/jedi.service";
 
+let useStyles = makeStyles({
+  formField: {
+    display: "flex",
+    flexDirection: "row",
+    textAlign: "baseline",
+    padding: "3px",
+    justifyContent: "",
+    width: "1500px",
+  },
+  textField: {
+    padding: "10px",
+  },
+});
+
 export default function ForceUserForm() {
+  let classes = useStyles();
+
   return (
     <Formik
-      initialValues={{}}
+      initialValues={{
+        name: "",
+        rank: "",
+        age: "",
+        race: "",
+        combat_style: "",
+        bio: "",
+      }}
       onSubmit={(values) => {
         createJedi(values, _.uniqueId("@jedi"));
       }}
     >
       {(props) => (
         <form onSubmit={props.handleSubmit}>
-          <div>
-            <h4>Name</h4>
-            <TextField
-              // label={country}
-              id="outlined-basic"
-              type="text"
-              variant="outlined"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.description}
-              name="position"
-            />
-            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-          </div>
-          <div>
-            <h4>Rank</h4>
-            <TextField
-              // label={country}
-              id="outlined-basic"
-              type="text"
-              variant="outlined"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.description}
-              name="position"
-            />
-            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-          </div>
-          <div>
-            <h4>Age</h4>
-            <TextField
-              // label={country}
-              id="outlined-basic"
-              type="text"
-              variant="outlined"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.description}
-              name="position"
-            />
-            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-          </div>
-          <div>
-            <h4>Race</h4>
-            <TextField
-              // label={country}
-              id="outlined-basic"
-              type="text"
-              variant="outlined"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.description}
-              name="position"
-            />
-            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-          </div>
-          <div>
-            <h4>Combat Style</h4>
-            <TextField
-              // label={country}
-              id="outlined-basic"
-              type="text"
-              variant="outlined"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.description}
-              name="position"
-            />
-            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-          </div>
-          <div>
-            <h4>Bio</h4>
-            <TextField
-              // label={country}
-              id="outlined-basic"
-              type="text"
-              variant="outlined"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.description}
-              name="position"
-            />
-            {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-          </div>
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={props.handleSubmit}
-            >
-              <Link to="/">Create the Force User</Link>
-            </Button>
-          </div>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <div className={classes.formField}>
+              <AssignmentIndIcon fontSize="large" />
+              <TextField
+                className={classes.textField}
+                label="name"
+                id="outlined-basic"
+                type="text"
+                variant="outlined"
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                value={props.values.name}
+                name="name"
+              />
+              {props.errors.name && (
+                <div id="feedback">{props.errors.name}</div>
+              )}
+            </div>
+            <div className={classes.formField}>
+              <SchoolIcon fontSize="large" />
+              <TextField
+                className={classes.textField}
+                label="rank"
+                id="outlined-basic"
+                type="text"
+                variant="outlined"
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                value={props.values.rank}
+                name="rank"
+              />
+              {props.errors.rank && (
+                <div id="feedback">{props.errors.rank}</div>
+              )}
+            </div>
+            <div className={classes.formField}>
+              <ChildCareIcon fontSize="large" />
+              <TextField
+                className={classes.textField}
+                label="age"
+                id="outlined-basic"
+                type="text"
+                variant="outlined"
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                value={props.values.age}
+                name="age"
+              />
+              {props.errors.age && <div id="feedback">{props.errors.age}</div>}
+            </div>
+            <div className={classes.formField}>
+              <FingerprintIcon fontSize="large" />
+              <TextField
+                className={classes.textField}
+                label="race"
+                id="outlined-basic"
+                type="text"
+                variant="outlined"
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                value={props.values.race}
+                name="race"
+              />
+              {props.errors.race && (
+                <div id="feedback">{props.errors.race}</div>
+              )}
+            </div>
+            <div className={classes.formField}>
+              <SportsHandballIcon fontSize="large" />
+              <TextField
+                className={classes.textField}
+                label="combat style"
+                id="outlined-basic"
+                type="text"
+                variant="outlined"
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                value={props.values.combat_style}
+                name="combat_style"
+              />
+              {props.errors.combat_style && (
+                <div id="feedback">{props.errors.combat_style}</div>
+              )}
+            </div>
+            <div className={classes.formField}>
+              <VisibilityIcon fontSize="large" />
+              <TextField
+                className={classes.textField}
+                label="The Great Power in you,I sense"
+                id="outlined-basic"
+                type="text"
+                variant="outlined"
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                value={props.values.bio}
+                name="bio"
+                rows={14}
+              />
+              {props.errors.bio && <div id="feedback">{props.errors.bio}</div>}
+            </div>
+            <div className={classes.formField}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={props.handleSubmit}
+              >
+                <Link to="/">Create the Force User</Link>
+              </Button>
+            </div>
+          </Grid>
         </form>
       )}
     </Formik>
