@@ -14,9 +14,9 @@ export default function SwitchRouter() {
   return (
     <main>
       <Switch>
-        {/* <Route exact path="/">
+        <Route exact path="/">
           <Home />
-        </Route> */}
+        </Route>
         <Route exact path="/darkSide">
           <DarkSide />
         </Route>
