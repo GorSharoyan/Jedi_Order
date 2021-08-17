@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 //UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -42,7 +43,7 @@ export default function ForceUserMiniCard({ name, rank, bio }) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Learn More
+          <Link to="/forceUser"> Learn More</Link>
         </Button>
       </CardActions>
     </Card>

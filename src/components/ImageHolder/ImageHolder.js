@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -51,20 +52,25 @@ export default function ImageHolder() {
             // justifyContent="space-between"
             alignItems="center"
           >
-            {/* <div> */}
-            <CardMedia
-              className={classes.media}
-              image={darkSideLink}
-              title="Siths"
-            ></CardMedia>
-            {/* </div>
-            <div> */}
-            <CardMedia
-              className={classes.media}
-              image={lightSideLink}
-              title="Jedis"
-            ></CardMedia>
-            {/* </div> */}
+            <Button>
+              <Link to="/darkSide">
+                <CardMedia
+                  className={classes.media}
+                  image={darkSideLink}
+                  title="Siths"
+                ></CardMedia>
+              </Link>
+            </Button>
+
+            <Button>
+              <Link to="/lightSide">
+                <CardMedia
+                  className={classes.media}
+                  image={lightSideLink}
+                  title="Jedis"
+                ></CardMedia>
+              </Link>
+            </Button>
           </Grid>
         </CardActionArea>
       </Card>
