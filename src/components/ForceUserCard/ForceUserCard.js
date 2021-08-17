@@ -15,7 +15,7 @@ import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 1500,
+    maxWidth: "1500px",
     border: "3px solid green",
   },
   media: {

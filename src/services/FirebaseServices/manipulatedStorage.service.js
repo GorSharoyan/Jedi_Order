@@ -7,3 +7,7 @@ export function getImageUrl(section) {
 export const getAssetUrl = (section, image) => {
   return storage.ref("Assets").child(section).child(image).getDownloadURL();
 };
+
+export const uploadImage = (section, image) => {
+  return storage.ref(`${section}${image.name}`).put(image);
+};
