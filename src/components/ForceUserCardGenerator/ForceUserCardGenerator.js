@@ -9,7 +9,7 @@ import { Grid } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 
 //components
-import ForceUserCard from "../ForceUserCard/ForceUserCard";
+import ForceUserMiniCard from "../ForceUserMiniCard/ForceUserMiniCard";
 
 //services
 import { getAllJedis } from "../../services/FirebaseServices/jedi.service";
@@ -44,7 +44,7 @@ export default function ForceUserCardGenerator() {
       <>
         {forceUsers.map((element) => {
           return (
-            <ForceUserCard
+            <ForceUserMiniCard
               name={element.name}
               rank={element.rank}
               bio={element.bio}

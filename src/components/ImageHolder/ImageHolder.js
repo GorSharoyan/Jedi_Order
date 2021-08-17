@@ -22,9 +22,10 @@ const useStyles = makeStyles({
     maxWidth: 345,
   },
   media: {
-    height: 140,
-    border: "3px solid green",
-    width: "200px",
+    border: "25px",
+    padding: "25px",
+    height: 400,
+    width: 650,
   },
 });
 
@@ -39,27 +40,31 @@ export default function ImageHolder() {
   getAssetUrl("DarkSide", "Siths.jpg").then((element) => {
     setDarkSideLink(element);
   });
-
+  console.log(lightSideLink);
   return (
     <Grid container direction="row" justifyContent="center" alignItems="center">
-      <Card className={classes.root}>
+      <Card>
         <CardActionArea>
           <Grid
             container
             direction="row"
-            justifyContent="center"
+            // justifyContent="space-between"
             alignItems="center"
           >
-            <CardMedia
-              className={classes.media}
-              image={lightSideLink}
-              title="Contemplative Reptile"
-            />
+            {/* <div> */}
             <CardMedia
               className={classes.media}
               image={darkSideLink}
-              title="Contemplative Reptile"
-            />
+              title="Siths"
+            ></CardMedia>
+            {/* </div>
+            <div> */}
+            <CardMedia
+              className={classes.media}
+              image={lightSideLink}
+              title="Jedis"
+            ></CardMedia>
+            {/* </div> */}
           </Grid>
         </CardActionArea>
       </Card>
