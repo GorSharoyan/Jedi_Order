@@ -21,6 +21,9 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import { createJedi } from "../../services/FirebaseServices/jedi.service";
 import { createSith } from "../../services/FirebaseServices/sith.service";
 
+//components
+import ImageUpload from "../ImageUpload/ImageUpload";
+
 let useStyles = makeStyles({
   formField: {
     display: "flex",
@@ -166,6 +169,9 @@ export default function ForceUserForm() {
                 rows={14}
               />
               {props.errors.bio && <div id="feedback">{props.errors.bio}</div>}
+            </div>
+            <div className={classes.formField}>
+              <ImageUpload />
             </div>
             <div className={classes.formField}>
               <Button
