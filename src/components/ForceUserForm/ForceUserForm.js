@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
@@ -16,13 +16,13 @@ import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
 import SportsHandballIcon from "@material-ui/icons/SportsHandball";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 //services
 import { createJedi } from "../../services/FirebaseServices/jedi.service";
 import { createSith } from "../../services/FirebaseServices/sith.service";
-
-//components
-import ImageUpload from "../ImageUpload/ImageUpload";
+import { uploadJediImage } from "../../services/FirebaseServices/jedi.service";
+import { uploadSithImage } from "../../services/FirebaseServices/sith.service";
 
 let useStyles = makeStyles({
   formField: {
@@ -41,6 +41,13 @@ let useStyles = makeStyles({
 export default function ForceUserForm() {
   let classes = useStyles();
   let location = useLocation().pathname;
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
+
+  const handleImageInput = ({ target: { files } }) => {
+    let img = files[0];
+    setImage(img);
+  };
 
   return (
     <Formik
@@ -55,8 +62,8 @@ export default function ForceUserForm() {
       onSubmit={(values) => {
         if (location === "/lightSide") {
           createJedi(values, _.uniqueId("@jedi"));
+          uploadJediImage(image);
           console.log("Jedi is created");
-          console.log(location);
         } else if (location === "/darkSide") {
           createSith(values, _.uniqueId("@sith"));
           console.log("Sith is created");
@@ -171,7 +178,19 @@ export default function ForceUserForm() {
               {props.errors.bio && <div id="feedback">{props.errors.bio}</div>}
             </div>
             <div className={classes.formField}>
-              <ImageUpload />
+              <Button
+                variant="contained"
+                color="default"
+                startIcon={<CloudUploadIcon />}
+              >
+                Upload
+              </Button>
+              <input
+                accept="image/*"
+                id="contained-button-file"
+                type="file"
+                onChange={handleImageInput}
+              />
             </div>
             <div className={classes.formField}>
               <Button
@@ -179,7 +198,7 @@ export default function ForceUserForm() {
                 color="primary"
                 onClick={props.handleSubmit}
               >
-                <Link to="/">Create the Force User</Link>
+                {/* <Link to="/">Create the Force User</Link> */}
               </Button>
             </div>
           </Grid>

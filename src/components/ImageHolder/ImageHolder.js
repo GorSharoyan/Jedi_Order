@@ -41,7 +41,7 @@ export default function ImageHolder() {
   getAssetUrl("DarkSide", "Siths.jpg").then((element) => {
     setDarkSideLink(element);
   });
-  console.log(lightSideLink);
+
   return (
     <Grid container direction="row" justifyContent="center" alignItems="center">
       <Card>
