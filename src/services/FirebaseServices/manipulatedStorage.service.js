@@ -9,5 +9,11 @@ export const uploadImage = (section, image) => {
 };
 
 export function getImageUrl(section, child) {
-  return storage.ref(section).child();
+  return storage
+    .ref(section)
+    .child(child.name)
+    .getDownloadURL()
+    .then((element) => {
+      return element;
+    });
 }

@@ -12,8 +12,8 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import ForceUserMiniCard from "../ForceUserMiniCard/ForceUserMiniCard";
 
 //services
-import { getAllJedis } from "../../services/FirebaseServices/jedi.service";
-import { getAllSiths } from "../../services/FirebaseServices/sith.service";
+import { getAllJedis } from "../../services/firebaseServices/jedi.service";
+import { getAllSiths } from "../../services/firebaseServices/sith.service";
 import { Link } from "react-router-dom";
 
 export default function ForceUserCardGenerator() {

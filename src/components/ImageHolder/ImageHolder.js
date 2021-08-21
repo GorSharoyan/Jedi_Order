@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 
 //services
-import { getAssetUrl } from "../../services/FirebaseServices/manipulatedStorage.service";
+import { getAssetUrl } from "../../services/firebaseServices/manipulatedStorage.service";
 
 const useStyles = makeStyles({
   root: {
