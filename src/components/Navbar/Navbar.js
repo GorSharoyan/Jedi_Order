@@ -1,14 +1,20 @@
-import React from "react";
+import { React, useState } from "react";
 import { Link } from "react-router-dom";
-/* UI */
+import { useHistory } from "react-router";
+
+//UI
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
+
+//services
+import { getAssetUrl } from "../../services/firebaseServices/manipulatedStorage.service";
 
 export default function Navbar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [logo, setLogo] = useState("");
+  let history = useHistory();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -18,6 +24,10 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
+  getAssetUrl("General", "Star_Wars_Logo.png").then((element) => {
+    setLogo(element);
+  });
+
   return (
     <div>
       <Button
@@ -25,7 +35,7 @@ export default function Navbar() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <AssignmentIndIcon />
+        <img src={logo} width="120px" />
       </Button>
       <Menu
         id="simple-menu"
