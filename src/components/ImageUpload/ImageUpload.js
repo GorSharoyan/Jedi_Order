@@ -10,7 +10,11 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 //services
 import { uploadJediImage } from "../../services/firebaseServices/jedi.service";
 import { uploadSithImage } from "../../services/firebaseServices/sith.service";
-import { getJediUserImageUrl } from "../../services/firebaseServices/jedi.service";
+import {
+  getJediUserImageUrl,
+  updateJediProfileInfo,
+} from "../../services/firebaseServices/jedi.service";
+import { updateData } from "../../services/firebaseServices/manipulatedDB.service";
 
 let useStyles = makeStyles({
   root: {
@@ -27,16 +31,17 @@ export default function ImageUpload() {
   const handleImageInput = async ({ target: { files } }) => {
     let img = files[0];
     await setImage(img);
+    // console.log(image);
   };
 
   const handleImageUpload = async () => {
     try {
       await uploadJediImage(image);
-      await setImageUrl(
-        getJediUserImageUrl(image).then((element) => {
-          return element;
-        })
-      );
+      await setImageUrl(await getJediUserImageUrl(image));
+      updateJediProfileInfo("@jedi1", "profileImage", imageUrl);
+      console.log(imageUrl);
+
+      // }
     } catch {
       setError(true);
       console.log(error);
