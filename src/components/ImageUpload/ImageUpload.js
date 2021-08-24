@@ -9,12 +9,11 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 //services
 import { uploadJediImage } from "../../services/firebaseServices/jedi.service";
+import { getJediUserImageUrl } from "../../services/firebaseServices/jedi.service";
+import { updateJediProfileInfo } from "../../services/firebaseServices/jedi.service";
 import { uploadSithImage } from "../../services/firebaseServices/sith.service";
-import {
-  getJediUserImageUrl,
-  updateJediProfileInfo,
-} from "../../services/firebaseServices/jedi.service";
-import { updateData } from "../../services/firebaseServices/manipulatedDB.service";
+import { getSithUserImageUrl } from "../../services/firebaseServices/sith.service";
+import { updateSithProfileInfo } from "../../services/firebaseServices/sith.service";
 
 let useStyles = makeStyles({
   root: {
