@@ -14,11 +14,8 @@ import ForceUserForm from "../../components/ForceUserForm/ForceUserForm";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
   step: {
-    // marginRight: "100px",
+    padding: "15px",
   },
   button: {
     marginRight: theme.spacing(1),
@@ -36,16 +33,7 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return (
-        // <Grid
-        //   container
-        //   direction="column"
-        //   justifyContent="center"
-        //   alignItems="center"
-        // >
-        <ForceUserForm />
-        // </Grid>
-      );
+      return <ForceUserForm />;
     case 1:
       return <ImageUpload />;
     case 2:
@@ -110,9 +98,7 @@ export default function ProfileStepper() {
           const stepProps = {};
           const labelProps = {};
           if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
-            );
+            labelProps.optional = <Typography variant="caption"></Typography>;
           }
           if (isStepSkipped(index)) {
             stepProps.completed = false;
@@ -137,7 +123,14 @@ export default function ProfileStepper() {
         ) : (
           <div>
             <Typography className={classes.step}>
-              {getStepContent(activeStep)}
+              <Grid
+                container
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                {getStepContent(activeStep)}
+              </Grid>
             </Typography>
             <div>
               <Button
