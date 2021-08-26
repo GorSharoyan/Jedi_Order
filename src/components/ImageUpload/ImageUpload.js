@@ -16,9 +16,7 @@ import { getSithUserImageUrl } from "../../services/firebaseServices/sith.servic
 import { updateSithProfileInfo } from "../../services/firebaseServices/sith.service";
 
 let useStyles = makeStyles({
-  root: {
-    border: "5px solid green",
-  },
+  root: {},
 });
 
 export default function ImageUpload() {

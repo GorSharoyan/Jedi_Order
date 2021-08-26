@@ -33,7 +33,7 @@ let useStyles = makeStyles({
     textAlign: "baseline",
     padding: "3px",
     justifyContent: "",
-    width: "1500px",
+    // width: "10px",
   },
   textField: {
     padding: "10px",

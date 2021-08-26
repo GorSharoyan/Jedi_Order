@@ -1,4 +1,5 @@
 import React from "react";
+
 //UI
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
@@ -6,6 +7,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Grid } from "@material-ui/core";
 
 //components
 import ForceUserForm from "../../components/ForceUserForm/ForceUserForm";
@@ -14,6 +16,9 @@ import ImageUpload from "../../components/ImageUpload/ImageUpload";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+  },
+  step: {
+    // marginRight: "100px",
   },
   button: {
     marginRight: theme.spacing(1),
@@ -25,17 +30,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ["Select campaign settings", "Create an ad group", "Create an ad"];
+  return ["Create Force User", "Upload an Image", "Rate US"];
 }
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <ForceUserForm />;
+      return (
+        // <Grid
+        //   container
+        //   direction="column"
+        //   justifyContent="center"
+        //   alignItems="center"
+        // >
+        <ForceUserForm />
+        // </Grid>
+      );
     case 1:
       return <ImageUpload />;
     case 2:
-      return "This is the bit I really care about!";
+      return "May the force be with you";
     default:
       return "Unknown step";
   }
@@ -122,7 +136,7 @@ export default function ProfileStepper() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>
+            <Typography className={classes.step}>
               {getStepContent(activeStep)}
             </Typography>
             <div>
