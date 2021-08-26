@@ -9,8 +9,6 @@ export default function LightSide() {
   return (
     <div>
       Jedis are here
-      <ImageUpload />
-      <ForceUserForm />
       <ForceUserCardGenerator />
     </div>
   );
