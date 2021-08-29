@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import "./ImageHolder.css";
+//UI
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -23,11 +24,14 @@ const useStyles = makeStyles({
     maxWidth: 345,
   },
   media: {
-    border: "25px",
+    border: "25px soild green",
     padding: "25px",
     height: 400,
     width: 650,
   },
+  // button: {
+  //   hover: "translateY(-100px)",
+  // },
 });
 
 export default function ImageHolder() {
@@ -49,10 +53,10 @@ export default function ImageHolder() {
           <Grid
             container
             direction="row"
-            // justifyContent="space-between"
+            justifyContent="space-between"
             alignItems="center"
           >
-            <Button>
+            <Button className="button">
               <Link to="/darkSide">
                 <CardMedia
                   className={classes.media}
@@ -61,8 +65,7 @@ export default function ImageHolder() {
                 ></CardMedia>
               </Link>
             </Button>
-
-            <Button>
+            <Button className="button">
               <Link to="/lightSide">
                 <CardMedia
                   className={classes.media}
