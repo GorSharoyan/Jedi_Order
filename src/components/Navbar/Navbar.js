@@ -18,11 +18,12 @@ export default function Navbar() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    history.push("/");
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   getAssetUrl("General", "Star_Wars_Logo.png").then((element) => {
     setLogo(element);
@@ -37,7 +38,7 @@ export default function Navbar() {
       >
         <img src={logo} width="120px" />
       </Button>
-      <Menu
+      {/* <Menu
         id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
@@ -50,7 +51,7 @@ export default function Navbar() {
         <MenuItem onClick={handleClose}>
           <Link to="/darkSide">Join the Dark Side</Link>
         </MenuItem>
-      </Menu>
+      </Menu> */}
     </div>
   );
 }
