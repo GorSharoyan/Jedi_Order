@@ -8,6 +8,8 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 //components
 import ForceUserForm from "../../components/ForceUserForm/ForceUserForm";
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "15px",
   },
   button: {
-    marginRight: theme.spacing(1),
+    // marginRight: theme.spacing(1),
   },
   instructions: {
     marginTop: theme.spacing(1),
@@ -72,25 +74,6 @@ export default function ProfileStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep}>
@@ -111,57 +94,40 @@ export default function ProfileStepper() {
         })}
       </Stepper>
       <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.step}>
-              <Grid
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                {getStepContent(activeStep)}
-              </Grid>
-            </Typography>
-            <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              {isStepOptional(activeStep) && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSkip}
-                  className={classes.button}
-                >
-                  Skip
-                </Button>
-              )}
-
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </div>
-          </div>
-        )}
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            className={classes.button}
+          >
+            <ArrowBackIosIcon />
+          </Button>
+          <Typography className={classes.step}>
+            <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              {getStepContent(activeStep)}
+            </Grid>
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleNext}
+            className={classes.button}
+          >
+            {activeStep === steps.length - 1 ? "Finish" : <NavigateNextIcon />}
+          </Button>
+        </Grid>
       </div>
     </div>
   );

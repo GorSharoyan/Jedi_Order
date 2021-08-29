@@ -38,6 +38,9 @@ let useStyles = makeStyles({
   textField: {
     padding: "10px",
   },
+  formik: {
+    border: "3px solid green",
+  },
 });
 
 export default function ForceUserForm() {
@@ -66,7 +69,7 @@ export default function ForceUserForm() {
       }}
     >
       {(props) => (
-        <form onSubmit={props.handleSubmit}>
+        <form className={classes.formik} onSubmit={props.handleSubmit}>
           <Grid
             container
             direction="column"
