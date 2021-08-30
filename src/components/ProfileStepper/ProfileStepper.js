@@ -14,6 +14,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 //components
 import ForceUserForm from "../../components/ForceUserForm/ForceUserForm";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
+import StepperButtons from "../StepperButtons/StepperButtons";
 
 const useStyles = makeStyles((theme) => ({
   step: {
@@ -30,19 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 function getSteps() {
   return ["Create Force User", "Upload an Image", "Rate US"];
-}
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <ForceUserForm />;
-    case 1:
-      return <ImageUpload />;
-    case 2:
-      return "May the force be with you";
-    default:
-      return "Unknown step";
-  }
 }
 
 export default function ProfileStepper() {
@@ -116,17 +104,19 @@ export default function ProfileStepper() {
               justifyContent="center"
               alignItems="center"
             >
-              {getStepContent(activeStep)}
+              {activeStep === 0 ? (
+                <ForceUserForm
+                  steps={steps}
+                  activeStep={activeStep}
+                  handleNext={handleNext}
+                />
+              ) : activeStep === 1 ? (
+                <ImageUpload />
+              ) : (
+                <></>
+              )}
             </Grid>
           </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleNext}
-            className={classes.button}
-          >
-            {activeStep === steps.length - 1 ? "Finish" : <NavigateNextIcon />}
-          </Button>
         </Grid>
       </div>
     </div>

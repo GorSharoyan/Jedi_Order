@@ -17,6 +17,9 @@ import ChildCareIcon from "@material-ui/icons/ChildCare";
 import SportsHandballIcon from "@material-ui/icons/SportsHandball";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 
+//components
+import StepperButtons from "../StepperButtons/StepperButtons";
+
 //services
 import {
   createJedi,
@@ -43,7 +46,7 @@ let useStyles = makeStyles({
   },
 });
 
-export default function ForceUserForm() {
+export default function ForceUserForm({ steps, activeStep, handleNext }) {
   let classes = useStyles();
   let location = useLocation().pathname;
 
@@ -175,7 +178,7 @@ export default function ForceUserForm() {
               />
               {props.errors.bio && <div id="feedback">{props.errors.bio}</div>}
             </div>
-            <div className={classes.formField}>
+            {/* <div className={classes.formField}>
               <Button
                 variant="contained"
                 color="primary"
@@ -183,7 +186,14 @@ export default function ForceUserForm() {
               >
                 <Link to="/">Create the Force User</Link>
               </Button>
-            </div>
+            </div> */}
+
+            <StepperButtons
+              steps={steps}
+              activeStep={activeStep}
+              handleNext={handleNext}
+              handleFormSubmit={props.handleFormSubmit}
+            />
           </Grid>
         </form>
       )}

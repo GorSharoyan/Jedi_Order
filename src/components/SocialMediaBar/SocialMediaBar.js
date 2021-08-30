@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
+
 //UI
 import { makeStyles } from "@material-ui/core/styles";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -31,12 +33,16 @@ const useStyles = makeStyles({
 
 export default function SocialMediaBar() {
   const classes = useStyles();
+  const history = useHistory();
+
   return (
     <div className={classes.root}>
       <div>
-        <Link to={fbLink}>
+        {/* <Link to={fbLink}> */}
+        <button onClick={history.push("/")}>
           <FacebookIcon className={classes.element} />
-        </Link>
+        </button>
+        {/* </Link> */}
         <Link to={linkedInLink}>
           <LinkedInIcon className={classes.element} />
         </Link>
