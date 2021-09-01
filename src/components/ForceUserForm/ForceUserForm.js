@@ -19,6 +19,8 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 
 //components
 import StepperButtons from "../StepperButtons/StepperButtons";
+import CreateForceUser from "../CreateForceUser/CreateForceUser";
+import ImageUpload from "../ImageUpload/ImageUpload";
 
 //services
 import {
@@ -28,6 +30,7 @@ import {
 import { createSith } from "../../services/firebaseServices/sith.service";
 import { uploadJediImage } from "../../services/firebaseServices/jedi.service";
 import { uploadSithImage } from "../../services/firebaseServices/sith.service";
+import ProfileStepper from "../ProfileStepper/ProfileStepper";
 
 let useStyles = makeStyles({
   formField: {
@@ -46,9 +49,14 @@ let useStyles = makeStyles({
   },
 });
 
-export default function ForceUserForm({ steps, activeStep, handleNext }) {
+export default function ForceUserForm({ activeStep, handleNext }) {
   let classes = useStyles();
   let location = useLocation().pathname;
+  let steps = getSteps();
+
+  function getSteps() {
+    return ["Create Force User", "Upload an Image", "Rate US"];
+  }
 
   return (
     <Formik
@@ -73,128 +81,122 @@ export default function ForceUserForm({ steps, activeStep, handleNext }) {
     >
       {(props) => (
         <form className={classes.formik} onSubmit={props.handleSubmit}>
-          <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <div className={classes.formField}>
-              <AssignmentIndIcon fontSize="large" />
-              <TextField
-                className={classes.textField}
-                label="name"
-                id="outlined-basic"
-                type="text"
-                variant="outlined"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.name}
-                name="name"
-              />
-              {props.errors.name && (
-                <div id="feedback">{props.errors.name}</div>
-              )}
-            </div>
-            <div className={classes.formField}>
-              <SchoolIcon fontSize="large" />
-              <TextField
-                className={classes.textField}
-                label="rank"
-                id="outlined-basic"
-                type="text"
-                variant="outlined"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.rank}
-                name="rank"
-              />
-              {props.errors.rank && (
-                <div id="feedback">{props.errors.rank}</div>
-              )}
-            </div>
-            <div className={classes.formField}>
-              <ChildCareIcon fontSize="large" />
-              <TextField
-                className={classes.textField}
-                label="age"
-                id="outlined-basic"
-                type="text"
-                variant="outlined"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.age}
-                name="age"
-              />
-              {props.errors.age && <div id="feedback">{props.errors.age}</div>}
-            </div>
-            <div className={classes.formField}>
-              <FingerprintIcon fontSize="large" />
-              <TextField
-                className={classes.textField}
-                label="race"
-                id="outlined-basic"
-                type="text"
-                variant="outlined"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.race}
-                name="race"
-              />
-              {props.errors.race && (
-                <div id="feedback">{props.errors.race}</div>
-              )}
-            </div>
-            <div className={classes.formField}>
-              <SportsHandballIcon fontSize="large" />
-              <TextField
-                className={classes.textField}
-                label="combat style"
-                id="outlined-basic"
-                type="text"
-                variant="outlined"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.combat_style}
-                name="combat_style"
-              />
-              {props.errors.combat_style && (
-                <div id="feedback">{props.errors.combat_style}</div>
-              )}
-            </div>
-            <div className={classes.formField}>
-              <VisibilityIcon fontSize="large" />
-              <TextField
-                className={classes.textField}
-                label="The Great Power in you,I sense"
-                id="outlined-basic"
-                type="text"
-                variant="outlined"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.bio}
-                name="bio"
-                rows={14}
-              />
-              {props.errors.bio && <div id="feedback">{props.errors.bio}</div>}
-            </div>
-            {/* <div className={classes.formField}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={props.handleSubmit}
+          <ProfileStepper
+            activeStepOne={
+              <Grid
+                container
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
               >
-                <Link to="/">Create the Force User</Link>
-              </Button>
-            </div> */}
-
-            <StepperButtons
-              steps={steps}
-              activeStep={activeStep}
-              handleNext={handleNext}
-              handleFormSubmit={props.handleFormSubmit}
-            />
-          </Grid>
+                <div className={classes.formField}>
+                  <AssignmentIndIcon fontSize="large" />
+                  <TextField
+                    className={classes.textField}
+                    label="name"
+                    id="outlined-basic"
+                    type="text"
+                    variant="outlined"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.name}
+                    name="name"
+                  />
+                  {props.errors.name && (
+                    <div id="feedback">{props.errors.name}</div>
+                  )}
+                </div>
+                <div className={classes.formField}>
+                  <SchoolIcon fontSize="large" />
+                  <TextField
+                    className={classes.textField}
+                    label="rank"
+                    id="outlined-basic"
+                    type="text"
+                    variant="outlined"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.rank}
+                    name="rank"
+                  />
+                  {props.errors.rank && (
+                    <div id="feedback">{props.errors.rank}</div>
+                  )}
+                </div>
+                <div className={classes.formField}>
+                  <ChildCareIcon fontSize="large" />
+                  <TextField
+                    className={classes.textField}
+                    label="age"
+                    id="outlined-basic"
+                    type="text"
+                    variant="outlined"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.age}
+                    name="age"
+                  />
+                  {props.errors.age && (
+                    <div id="feedback">{props.errors.age}</div>
+                  )}
+                </div>
+                <div className={classes.formField}>
+                  <FingerprintIcon fontSize="large" />
+                  <TextField
+                    className={classes.textField}
+                    label="race"
+                    id="outlined-basic"
+                    type="text"
+                    variant="outlined"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.race}
+                    name="race"
+                  />
+                  {props.errors.race && (
+                    <div id="feedback">{props.errors.race}</div>
+                  )}
+                </div>
+                <div className={classes.formField}>
+                  <SportsHandballIcon fontSize="large" />
+                  <TextField
+                    className={classes.textField}
+                    label="combat style"
+                    id="outlined-basic"
+                    type="text"
+                    variant="outlined"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.combat_style}
+                    name="combat_style"
+                  />
+                  {props.errors.combat_style && (
+                    <div id="feedback">{props.errors.combat_style}</div>
+                  )}
+                </div>
+                <div className={classes.formField}>
+                  <VisibilityIcon fontSize="large" />
+                  <TextField
+                    className={classes.textField}
+                    label="The Great Power in you,I sense"
+                    id="outlined-basic"
+                    type="text"
+                    variant="outlined"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.bio}
+                    name="bio"
+                    rows={14}
+                  />
+                  {props.errors.bio && (
+                    <div id="feedback">{props.errors.bio}</div>
+                  )}
+                </div>
+              </Grid>
+            }
+            activeStepTwo={<ImageUpload />}
+            handleFormSubmit={props.handleFormSubmit}
+          />
         </form>
       )}
     </Formik>

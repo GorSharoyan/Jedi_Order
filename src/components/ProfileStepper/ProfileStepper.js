@@ -29,15 +29,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps() {
-  return ["Create Force User", "Upload an Image", "Rate US"];
-}
-
-export default function ProfileStepper() {
+export default function ProfileStepper({
+  activeStepOne,
+  activeStepTwo,
+  handleFormSubmit,
+}) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
-  const steps = getSteps();
+  let steps = getSteps();
+
+  function getSteps() {
+    return ["Create Force User", "Upload an Image", "Rate US"];
+  }
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -100,23 +104,25 @@ export default function ProfileStepper() {
           <Typography className={classes.step}>
             <Grid
               container
-              direction="column"
+              direction="row"
               justifyContent="center"
               alignItems="center"
             >
               {activeStep === 0 ? (
-                <ForceUserForm
-                  steps={steps}
-                  activeStep={activeStep}
-                  handleNext={handleNext}
-                />
+                activeStepOne
               ) : activeStep === 1 ? (
-                <ImageUpload />
+                activeStepTwo
               ) : (
                 <></>
               )}
             </Grid>
           </Typography>
+          <StepperButtons
+            steps={steps}
+            activeStep={activeStep}
+            handleNext={handleNext}
+            handleFormSubmit={handleFormSubmit}
+          />
         </Grid>
       </div>
     </div>

@@ -9,6 +9,7 @@ import LightSide from "../../pages/LightSide/LightSide";
 //components
 import ForceUserCard from "../ForceUserCard/ForceUserCard";
 import ProfileStepper from "../ProfileStepper/ProfileStepper";
+import ForceUserForm from "../ForceUserForm/ForceUserForm";
 
 export default function SwitchRouter() {
   return (
@@ -24,7 +25,8 @@ export default function SwitchRouter() {
           <LightSide />
         </Route>
         <Route exact path="/register">
-          <ProfileStepper />
+          {/* <ProfileStepper /> */}
+          <ForceUserForm />
         </Route>
         <Route exact path="/forceUser">
           <ForceUserCard />
