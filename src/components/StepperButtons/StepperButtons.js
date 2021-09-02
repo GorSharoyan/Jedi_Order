@@ -19,7 +19,6 @@ export default function StepperButtons({
   handleFormSubmit,
 }) {
   const classes = useStyles();
-  console.log(steps.lenth);
 
   return (
     <div>
@@ -29,13 +28,12 @@ export default function StepperButtons({
         justifyContent="center"
         alignItems="center"
       >
-        {activeStep === steps.lenth - 1 ? (
+        {activeStep >= steps.length - 1 ? (
           <Button
             variant="contained"
             color="primary"
-            onClick={handleNext}
             className={classes.button}
-            onSubmit={handleFormSubmit}
+            onClick={handleFormSubmit}
           >
             Finish
           </Button>

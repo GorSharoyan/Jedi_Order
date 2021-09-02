@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProfileStepper({
+  steps,
   activeStepOne,
   activeStepTwo,
   handleFormSubmit,
@@ -37,11 +38,8 @@ export default function ProfileStepper({
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
-  let steps = getSteps();
 
-  function getSteps() {
-    return ["Create Force User", "Upload an Image", "Rate US"];
-  }
+  console.log("active Step", activeStep);
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -113,7 +111,7 @@ export default function ProfileStepper({
               ) : activeStep === 1 ? (
                 activeStepTwo
               ) : (
-                <></>
+                <>Gago</>
               )}
             </Grid>
           </Typography>
