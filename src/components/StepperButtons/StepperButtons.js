@@ -7,9 +7,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { makeStyles } from "@material-ui/core";
 
 let useStyles = makeStyles((theme) => ({
-  button: {
-    border: "3px solid green",
-  },
+  button: {},
 }));
 
 export default function StepperButtons({

@@ -8,12 +8,9 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 //components
-import ForceUserForm from "../../components/ForceUserForm/ForceUserForm";
-import ImageUpload from "../../components/ImageUpload/ImageUpload";
 import StepperButtons from "../StepperButtons/StepperButtons";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProfileStepper({
-  steps,
   activeStepOne,
   activeStepTwo,
   handleFormSubmit,
@@ -38,6 +34,11 @@ export default function ProfileStepper({
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  let steps = getSteps();
+
+  function getSteps() {
+    return ["Create Force User", "Upload an Image", "Rate US"];
+  }
 
   console.log("active Step", activeStep);
 

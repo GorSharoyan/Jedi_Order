@@ -1,36 +1,14 @@
-import { React, useState } from "react";
-import { Formik } from "formik";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router";
-
-//lodash
-import _ from "lodash";
+import React from "react";
 
 //UI
 import { Grid, TextField } from "@material-ui/core";
-import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import SchoolIcon from "@material-ui/icons/School";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
 import SportsHandballIcon from "@material-ui/icons/SportsHandball";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-
-//components
-import StepperButtons from "../StepperButtons/StepperButtons";
-import CreateForceUser from "../CreateForceUser/CreateForceUser";
-import ImageUpload from "../ImageUpload/ImageUpload";
-
-//services
-import {
-  createJedi,
-  getJediUserImageUrl,
-} from "../../services/firebaseServices/jedi.service";
-import { createSith } from "../../services/firebaseServices/sith.service";
-import { uploadJediImage } from "../../services/firebaseServices/jedi.service";
-import { uploadSithImage } from "../../services/firebaseServices/sith.service";
-import ProfileStepper from "../ProfileStepper/ProfileStepper";
+import { makeStyles } from "@material-ui/core";
 
 let useStyles = makeStyles({
   formField: {
@@ -39,7 +17,6 @@ let useStyles = makeStyles({
     textAlign: "baseline",
     padding: "3px",
     justifyContent: "",
-    // width: "10px",
   },
   textField: {
     padding: "10px",
@@ -49,56 +26,112 @@ let useStyles = makeStyles({
   },
 });
 
-export default function ForceUserForm() {
-  let classes = useStyles();
-  let location = useLocation().pathname;
-  let steps = getSteps();
-
-  function getSteps() {
-    return ["Create Force User", "Upload an Image", "Rate US"];
-  }
+export default function ForceUserForm({
+  handleChange,
+  handleBlur,
+  values,
+  errors,
+}) {
+  const classes = useStyles();
 
   return (
-    <Formik
-      initialValues={{
-        name: "",
-        rank: "",
-        age: "",
-        race: "",
-        combat_style: "",
-        bio: "",
-        profileImage: "",
-      }}
-      onSubmit={(values) => {
-        if (location === "/lightSide") {
-          createJedi(values, _.uniqueId("@jedi"));
-          console.log("Jedi is created");
-        } else if (location === "/darkSide") {
-          createSith(values, _.uniqueId("@sith"));
-          console.log("Sith is created");
-        }
-      }}
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
     >
-      {(props) => (
-        <form className={classes.formik} onSubmit={props.handleSubmit}>
-          <ProfileStepper
-            steps={steps}
-            activeStepOne={
-              <CreateForceUser
-                handleBlur={props.handleBlur}
-                handleChange={props.handleChange}
-                name={props.values.name}
-                rank={props.values.rank}
-                combat_style={props.values.combat_style}
-                bio={props.values.bio}
-                race={props.values.race}
-              />
-            }
-            activeStepTwo={<ImageUpload />}
-            handleFormSubmit={props.handleSubmit}
-          />
-        </form>
-      )}
-    </Formik>
+      <div className={classes.formField}>
+        <AssignmentIndIcon fontSize="large" />
+        <TextField
+          className={classes.textField}
+          label="name"
+          id="outlined-basic"
+          type="text"
+          variant="outlined"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.name}
+          name="name"
+        />
+        {errors.name && <div id="feedback">{errors.name}</div>}
+      </div>
+      <div className={classes.formField}>
+        <SchoolIcon fontSize="large" />
+        <TextField
+          className={classes.textField}
+          label="rank"
+          id="outlined-basic"
+          type="text"
+          variant="outlined"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.rank}
+          name="rank"
+        />
+        {errors.rank && <div id="feedback">{errors.rank}</div>}
+      </div>
+      <div className={classes.formField}>
+        <ChildCareIcon fontSize="large" />
+        <TextField
+          className={classes.textField}
+          label="age"
+          id="outlined-basic"
+          type="text"
+          variant="outlined"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.age}
+          name="age"
+        />
+        {errors.age && <div id="feedback">{errors.age}</div>}
+      </div>
+      <div className={classes.formField}>
+        <FingerprintIcon fontSize="large" />
+        <TextField
+          className={classes.textField}
+          label="race"
+          id="outlined-basic"
+          type="text"
+          variant="outlined"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.race}
+          name="race"
+        />
+        {errors.race && <div id="feedback">{errors.race}</div>}
+      </div>
+      <div className={classes.formField}>
+        <SportsHandballIcon fontSize="large" />
+        <TextField
+          className={classes.textField}
+          label="combat style"
+          id="outlined-basic"
+          type="text"
+          variant="outlined"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.combat_style}
+          name="combat_style"
+        />
+        {errors.combat_style && <div id="feedback">{errors.combat_style}</div>}
+      </div>
+      <div className={classes.formField}>
+        <VisibilityIcon fontSize="large" />
+        <TextField
+          className={classes.textField}
+          label="The Great Power in you,I sense"
+          id="outlined-basic"
+          type="text"
+          variant="outlined"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.bio}
+          name="bio"
+          rows={14}
+        />
+        {errors.bio && <div id="feedback">{errors.bio}</div>}
+      </div>
+    </Grid>
   );
 }
