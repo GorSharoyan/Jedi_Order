@@ -43,14 +43,14 @@ export default function ImageUpload() {
   const handleImageInput = async ({ target: { files } }) => {
     let img = files[0];
     await setImage(img);
-    await setImageUrl(await getJediUserImageUrl(image));
   };
 
   const handleImageUpload = async () => {
     try {
       await uploadJediImage(image);
-      updateJediProfileInfo("@jedi1", "profileImage", imageUrl);
-      console.log(imageUrl);
+      await setImageUrl(await getJediUserImageUrl(image));
+      await updateJediProfileInfo("@jedi1", "profileImage", imageUrl);
+      console.log("image URL", imageUrl);
     } catch {
       setError(true);
       console.log(error);
