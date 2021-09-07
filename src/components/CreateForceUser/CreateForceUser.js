@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { Formik } from "formik";
-import { useLocation } from "react-router";
+// import { useLocation } from "react-router";
+import { useHistory } from "react-router-dom";
 
 //lodash
 import _ from "lodash";
@@ -18,6 +19,8 @@ import RatingBar from "../RatingBar/RatingBar";
 import { createJedi } from "../../services/firebaseServices/jedi.service";
 import { createSith } from "../../services/firebaseServices/sith.service";
 
+import { pathLocation } from "../ForceUserCardGenerator/ForceUserCardGenerator";
+
 let useStyles = makeStyles({
   formik: {
     border: "3px solid green",
@@ -25,8 +28,8 @@ let useStyles = makeStyles({
 });
 
 export default function CreateForceUser() {
+  let history = useHistory();
   let classes = useStyles();
-  let location = useLocation().pathname;
 
   return (
     <Formik
@@ -40,10 +43,11 @@ export default function CreateForceUser() {
         profileImage: "",
       }}
       onSubmit={(values) => {
-        if (location === "/lightSide") {
+        if (pathLocation === "/lightSide") {
           createJedi(values, _.uniqueId("@jedi"));
           console.log("Jedi is created");
-        } else if (location === "/darkSide") {
+          history.push("/");
+        } else if (pathLocation === "/darkSide") {
           createSith(values, _.uniqueId("@sith"));
           console.log("Sith is created");
         }
@@ -61,7 +65,7 @@ export default function CreateForceUser() {
               />
             }
             activeStepTwo={<ImageUpload />}
-            activeStepThree={"adadad"}
+            activeStepThree={<RatingBar />}
             handleFormSubmit={props.handleSubmit}
           />
         </form>

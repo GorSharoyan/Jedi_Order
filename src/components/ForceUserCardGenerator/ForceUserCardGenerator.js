@@ -16,9 +16,14 @@ import { getAllJedis } from "../../services/firebaseServices/jedi.service";
 import { getAllSiths } from "../../services/firebaseServices/sith.service";
 import { Link } from "react-router-dom";
 
+export const pathLocation = String(
+  window.location.href.split("http://localhost:3001")[1]
+);
+
 export default function ForceUserCardGenerator() {
   const location = useLocation().pathname;
   const [forceUsers, setForceUsers] = useState([""]);
+  console.log(pathLocation);
 
   useEffect(() => {
     if (location === "/lightSide") {
