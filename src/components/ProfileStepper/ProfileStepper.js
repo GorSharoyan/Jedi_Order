@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ProfileStepper({
   activeStepOne,
   activeStepTwo,
+  activeStepThree,
   handleFormSubmit,
 }) {
   const classes = useStyles();
@@ -107,13 +108,11 @@ export default function ProfileStepper({
               justifyContent="center"
               alignItems="center"
             >
-              {activeStep === 0 ? (
-                activeStepOne
-              ) : activeStep === 1 ? (
-                activeStepTwo
-              ) : (
-                <>Gago</>
-              )}
+              {activeStep === 0
+                ? activeStepOne
+                : activeStep === 1
+                ? activeStepTwo
+                : activeStepThree}
             </Grid>
           </Typography>
           <StepperButtons

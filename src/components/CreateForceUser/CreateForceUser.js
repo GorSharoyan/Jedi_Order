@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ForceUserForm from "../ForceUserForm/ForceUserForm";
 import ProfileStepper from "../ProfileStepper/ProfileStepper";
 import ImageUpload from "../ImageUpload/ImageUpload";
+import RatingBar from "../RatingBar/RatingBar";
 
 //services
 import { createJedi } from "../../services/firebaseServices/jedi.service";
@@ -60,6 +61,7 @@ export default function CreateForceUser() {
               />
             }
             activeStepTwo={<ImageUpload />}
+            activeStepThree={"adadad"}
             handleFormSubmit={props.handleSubmit}
           />
         </form>

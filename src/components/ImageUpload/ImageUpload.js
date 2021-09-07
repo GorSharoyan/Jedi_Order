@@ -50,7 +50,6 @@ export default function ImageUpload() {
       await uploadJediImage(image);
       await setImageUrl(await getJediUserImageUrl(image));
       await updateJediProfileInfo("@jedi1", "profileImage", imageUrl);
-      console.log("image URL", imageUrl);
     } catch {
       setError(true);
       console.log(error);
