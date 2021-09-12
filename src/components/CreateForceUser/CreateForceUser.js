@@ -1,5 +1,6 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import { Formik } from "formik";
+
 // import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 
@@ -18,8 +19,8 @@ import RatingBar from "../RatingBar/RatingBar";
 //services
 import { createJedi } from "../../services/firebaseServices/jedi.service";
 import { createSith } from "../../services/firebaseServices/sith.service";
-
 import { pathLocation } from "../ForceUserCardGenerator/ForceUserCardGenerator";
+import Context from "../../services/context.service.js/context";
 
 let useStyles = makeStyles({
   formik: {
@@ -28,9 +29,13 @@ let useStyles = makeStyles({
 });
 
 export default function CreateForceUser() {
-  let forceUserId = _.uniqueId("@");
   let history = useHistory();
   let classes = useStyles();
+  let legacy = useContext(Context);
+
+  let generateForceUserId = (n) => {
+    return _.uniqueId(`@${n}`);
+  };
 
   return (
     <Formik
@@ -44,16 +49,25 @@ export default function CreateForceUser() {
         profileImage: "",
       }}
       onSubmit={(values) => {
-        console.log(pathLocation);
-        if (pathLocation === ",/lightSide") {
-          createJedi(values, forceUserId);
-          console.log("Jedi is created");
+        if (legacy === "jedi") {
+          console.log("ilav");
+          createJedi(values, generateForceUserId("jedi"));
           history.push("/");
-        } else if (pathLocation === ",/darkSide") {
-          createSith(values, forceUserId);
-          console.log("Sith is created");
+        } else if (legacy === "sith") {
+          console.log("ilav");
+          createSith(values, generateForceUserId("sith"));
           history.push("/");
         }
+        // console.log(pathLocation);
+        // if (pathLocation === ",/lightSide") {
+        //   createJedi(values, forceUserId);
+        //   console.log("Jedi is created");
+        //   history.push("/");
+        // } else if (pathLocation === ",/darkSide") {
+        //   createSith(values, forceUserId);
+        //   console.log("Sith is created");
+        //   history.push("/");
+        // }
       }}
     >
       {(props) => (

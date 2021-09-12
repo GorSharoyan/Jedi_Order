@@ -6,7 +6,6 @@ import ForceUserCardGenerator from "../../components/ForceUserCardGenerator/Forc
 export default function DarkSide() {
   return (
     <div>
-      Siths are here
       <ForceUserCardGenerator />
     </div>
   );
