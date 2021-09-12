@@ -28,6 +28,7 @@ let useStyles = makeStyles({
 });
 
 export default function CreateForceUser() {
+  let forceUserId = _.uniqueId("@");
   let history = useHistory();
   let classes = useStyles();
 
@@ -43,13 +44,15 @@ export default function CreateForceUser() {
         profileImage: "",
       }}
       onSubmit={(values) => {
-        if (pathLocation === "/lightSide") {
-          createJedi(values, _.uniqueId("@jedi"));
+        console.log(pathLocation);
+        if (pathLocation === ",/lightSide") {
+          createJedi(values, forceUserId);
           console.log("Jedi is created");
           history.push("/");
-        } else if (pathLocation === "/darkSide") {
-          createSith(values, _.uniqueId("@sith"));
+        } else if (pathLocation === ",/darkSide") {
+          createSith(values, forceUserId);
           console.log("Sith is created");
+          history.push("/");
         }
       }}
     >

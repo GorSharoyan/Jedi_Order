@@ -17,7 +17,7 @@ import { getAllSiths } from "../../services/firebaseServices/sith.service";
 import { Link } from "react-router-dom";
 
 export const pathLocation = String(
-  window.location.href.split("http://localhost:3001")[1]
+  window.location.href.split("http://localhost:3000")
 );
 
 export default function ForceUserCardGenerator() {
