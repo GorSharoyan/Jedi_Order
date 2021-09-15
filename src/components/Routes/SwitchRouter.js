@@ -24,7 +24,6 @@ export default function SwitchRouter() {
           <LightSide />
         </Route>
         <Route exact path="/register">
-          {/* <ProfileStepper /> */}
           <CreateForceUser />
         </Route>
         <Route exact path="/forceUser">

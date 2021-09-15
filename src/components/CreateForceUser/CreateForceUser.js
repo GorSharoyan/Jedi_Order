@@ -19,8 +19,6 @@ import RatingBar from "../RatingBar/RatingBar";
 //services
 import { createJedi } from "../../services/firebaseServices/jedi.service";
 import { createSith } from "../../services/firebaseServices/sith.service";
-import { pathLocation } from "../ForceUserCardGenerator/ForceUserCardGenerator";
-import Context from "../../services/context.service.js/context";
 
 let useStyles = makeStyles({
   formik: {
@@ -28,10 +26,9 @@ let useStyles = makeStyles({
   },
 });
 
-export default function CreateForceUser() {
+export default function CreateForceUser({ legacy }) {
   let history = useHistory();
   let classes = useStyles();
-  let legacy = useContext(Context);
 
   let generateForceUserId = (n) => {
     return _.uniqueId(`@${n}`);
@@ -40,6 +37,7 @@ export default function CreateForceUser() {
   return (
     <Formik
       initialValues={{
+        forceSide: legacy,
         name: "",
         rank: "",
         age: "",
@@ -58,16 +56,6 @@ export default function CreateForceUser() {
           createSith(values, generateForceUserId("sith"));
           history.push("/");
         }
-        // console.log(pathLocation);
-        // if (pathLocation === ",/lightSide") {
-        //   createJedi(values, forceUserId);
-        //   console.log("Jedi is created");
-        //   history.push("/");
-        // } else if (pathLocation === ",/darkSide") {
-        //   createSith(values, forceUserId);
-        //   console.log("Sith is created");
-        //   history.push("/");
-        // }
       }}
     >
       {(props) => (

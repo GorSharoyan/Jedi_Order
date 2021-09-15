@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
 //UI
@@ -17,23 +16,20 @@ import CreateForceUser from "../CreateForceUser/CreateForceUser";
 //services
 import { getAllJedis } from "../../services/firebaseServices/jedi.service";
 import { getAllSiths } from "../../services/firebaseServices/sith.service";
-import { ForceUserSideInfo } from "../../services/context.service.js/forceUser.side.service";
-import Context from "../../services/context.service.js/context";
-
-export const pathLocation = String(
-  window.location.href.split("http://localhost:3000")
-);
 
 export default function ForceUserCardGenerator() {
+  //imported hooks
   const location = useLocation().pathname;
+  let history = useHistory();
+  //my hooks
   const [forceUsers, setForceUsers] = useState([""]);
   const [forceUserSide, setForceUserSide] = useState("");
-  let history = useHistory();
+  const [click, setClick] = useState(0);
 
   function handleOnClick() {
-    history.push("/register");
+    setClick(1);
+    // history.push(`/register`);
   }
-  console.log(location);
 
   useEffect(() => {
     if (location === "/lightSide") {
@@ -52,38 +48,42 @@ export default function ForceUserCardGenerator() {
   }, []);
 
   return (
-    <Context.Provider value={forceUserSide}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-around"
-        alignItems="baseline"
-      >
-        <>
-          {forceUsers.map((element) => {
-            return (
-              <ForceUserMiniCard
-                name={element.name}
-                rank={element.rank}
-                bio={element.bio}
-              />
-            );
-          })}
-        </>
-        <>
-          <Card>
-            <p>Join the {location}</p>
-            <CardContent>
-              {/* <CreateForceUser /> */}
-              <Button onClick={handleOnClick}>
-                {/* <Link to="/register"> */}
+    // <ForceUserSideHookParent>
+    <Grid
+      container
+      direction="row"
+      justifyContent="space-around"
+      alignItems="baseline"
+    >
+      <>
+        {forceUsers.map((element) => {
+          return (
+            <ForceUserMiniCard
+              name={element.name}
+              rank={element.rank}
+              bio={element.bio}
+            />
+          );
+        })}
+      </>
+      <>
+        <Card>
+          {/* <p>Join the {location}</p> */}
+          <CardContent>
+            {/* <CreateForceUser /> */}
+            <Button onClick={handleOnClick}>
+              {click === 0 ? (
                 <AddBoxIcon />
-                {/* </Link> */}
-              </Button>
-            </CardContent>
-          </Card>
-        </>
-      </Grid>
-    </Context.Provider>
+              ) : click === 1 ? (
+                <CreateForceUser legacy={forceUserSide} />
+              ) : (
+                <></>
+              )}
+            </Button>
+          </CardContent>
+        </Card>
+      </>
+    </Grid>
+    // {/* </ForceUserSideHookParent> */}
   );
 }
