@@ -77,7 +77,7 @@ export default function ForceUserCardGenerator() {
               ) : click === 1 ? (
                 <CreateForceUser legacy={forceUserSide} />
               ) : (
-                <></>
+                <>.</>
               )}
             </Button>
           </CardContent>
