@@ -5,9 +5,12 @@ import { Grid } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { makeStyles } from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 let useStyles = makeStyles((theme) => ({
-  button: {},
+  buttons: {
+    padding: "250px",
+  },
 }));
 
 export default function StepperButtons({
@@ -15,6 +18,7 @@ export default function StepperButtons({
   activeStep,
   handleNext,
   handleFormSubmit,
+  handleback,
 }) {
   const classes = useStyles();
 
@@ -26,6 +30,17 @@ export default function StepperButtons({
         justifyContent="center"
         alignItems="center"
       >
+        <>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            className={classes.button}
+          >
+            <ArrowBackIosIcon />
+          </Button>
+        </>
         {activeStep >= steps.length - 1 ? (
           <Button
             variant="contained"

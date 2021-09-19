@@ -21,9 +21,9 @@ import { createJedi } from "../../services/firebaseServices/jedi.service";
 import { createSith } from "../../services/firebaseServices/sith.service";
 
 let useStyles = makeStyles({
-  formik: {
-    border: "3px solid green",
-  },
+  // formik: {
+  //   border: "3px solid green",
+  // },
 });
 
 export default function CreateForceUser({ legacy }) {
@@ -68,7 +68,7 @@ export default function CreateForceUser({ legacy }) {
               />
             }
             activeStepTwo={<ImageUpload />}
-            activeStepThree={<RatingBar />}
+            activeStepThree={<RatingBar legacy={legacy} />}
             handleFormSubmit={props.handleSubmit}
           />
         </form>
