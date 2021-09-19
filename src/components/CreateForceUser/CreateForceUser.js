@@ -20,6 +20,9 @@ import RatingBar from "../RatingBar/RatingBar";
 import { createJedi } from "../../services/firebaseServices/jedi.service";
 import { createSith } from "../../services/firebaseServices/sith.service";
 
+//utils
+import forceUserValidation from "../../Utils/forceUserValidation.helper";
+
 let useStyles = makeStyles({
   // formik: {
   //   border: "3px solid green",
@@ -47,25 +50,7 @@ export default function CreateForceUser({ legacy }) {
         profileImage: "",
       }}
       validate={(values) => {
-        const errors = {};
-        if (values.name === "") {
-          errors.name = "required";
-        }
-        if (values.rank === "") {
-          errors.rank = "required";
-        }
-        if (values.age === "") {
-          errors.age = "required";
-        }
-        if (values.race === "") {
-          errors.race = "required";
-        }
-        if (values.combat_style === "") {
-          errors.combat_style = "required";
-        }
-        if (values.bio === "") {
-          errors.bio = "required";
-        }
+        return forceUserValidation(values);
       }}
       onSubmit={(values) => {
         if (legacy === "jedi") {

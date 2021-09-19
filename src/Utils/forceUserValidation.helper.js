@@ -1,21 +1,12 @@
-export default validateForceUser = (values) => {
+const forceUserValidation = (values) => {
   const errors = {};
-  if (values.name === "") {
-    errors.name = "required";
-  }
-  if (values.rank === "") {
-    errors.rank = "required";
-  }
-  if (values.age === "") {
-    errors.age = "required";
-  }
-  if (values.race === "") {
-    errors.race = "required";
-  }
-  if (values.combat_style === "") {
-    errors.combat_style = "required";
-  }
-  if (values.bio === "") {
-    errors.bio = "required";
+  const iterableValues = Object.values(values);
+  for (let i = 0; i < iterableValues.length; i++) {
+    console.log(iterableValues[i]);
+    if (iterableValues[i] === "") {
+      errors.iterableValues[i] = "required";
+    }
+    return errors;
   }
 };
+export default forceUserValidation;
