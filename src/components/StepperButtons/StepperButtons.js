@@ -9,7 +9,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 let useStyles = makeStyles((theme) => ({
   buttons: {
-    padding: "250px",
+    padding: "50px",
   },
 }));
 
@@ -18,7 +18,8 @@ export default function StepperButtons({
   activeStep,
   handleNext,
   handleFormSubmit,
-  handleback,
+  handleBack,
+  children,
 }) {
   const classes = useStyles();
 
@@ -27,7 +28,7 @@ export default function StepperButtons({
       <Grid
         container
         direction="row"
-        justifyContent="center"
+        justifyContent="space-between"
         alignItems="center"
       >
         <>
@@ -41,25 +42,28 @@ export default function StepperButtons({
             <ArrowBackIosIcon />
           </Button>
         </>
-        {activeStep >= steps.length - 1 ? (
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={handleFormSubmit}
-          >
-            Finish
-          </Button>
-        ) : (
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleNext}
-            className={classes.button}
-          >
-            <NavigateNextIcon />
-          </Button>
-        )}
+        <div className={classes.buttons}>{children}</div>
+        <>
+          {activeStep >= steps.length - 1 ? (
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={handleFormSubmit}
+            >
+              Finish
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleNext}
+              className={classes.button}
+            >
+              <NavigateNextIcon />
+            </Button>
+          )}
+        </>
       </Grid>
     </div>
   );

@@ -92,35 +92,28 @@ export default function ProfileStepper({
           justifyContent="center"
           alignItems="center"
         >
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            className={classes.button}
-          >
-            <ArrowBackIosIcon />
-          </Button>
           <Typography className={classes.step}>
-            <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
+            <StepperButtons
+              steps={steps}
+              activeStep={activeStep}
+              handleNext={handleNext}
+              handleFormSubmit={handleFormSubmit}
+              handleBack={handleBack}
             >
-              {activeStep === 0
-                ? activeStepOne
-                : activeStep === 1
-                ? activeStepTwo
-                : activeStepThree}
-            </Grid>
+              <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                {activeStep === 0
+                  ? activeStepOne
+                  : activeStep === 1
+                  ? activeStepTwo
+                  : activeStepThree}
+              </Grid>
+            </StepperButtons>
           </Typography>
-          <StepperButtons
-            steps={steps}
-            activeStep={activeStep}
-            handleNext={handleNext}
-            handleFormSubmit={handleFormSubmit}
-          />
         </Grid>
       </div>
     </div>
