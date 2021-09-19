@@ -52,6 +52,7 @@ export default function ForceUserForm({
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.name}
+          error={errors.name}
           name="name"
         />
         {errors.name && <div id="feedback">{errors.name}</div>}

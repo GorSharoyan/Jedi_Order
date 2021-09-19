@@ -17,15 +17,12 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import { getAssetUrl } from "../../services/firebaseServices/manipulatedStorage.service";
 
 let useStyles = makeStyles({
-  card: {
-    length: "2500px",
-    passing: "250px",
-    border: "3px solid green",
-  },
   image: {
-    // padding: "250px",
-    // border: "3px solid green",
     height: "500px",
+  },
+  rateBox: {
+    padding: "30px",
+    textAlign: "center",
   },
 });
 
@@ -51,19 +48,26 @@ export default function BasicRating({ legacy }) {
       justifyContent="center"
       alignItems="center"
     >
-      <div className={classes.card}>
+      <div>
         <Card>
           <img className={classes.image} src={assetImageLink} />
         </Card>
       </div>
-      <>
+      <div className={classes.rateBox}>
         <Box
           sx={{
             "& > legend": { mt: 2 },
           }}
         >
-          <Typography component="legend"> Rate US</Typography>
+          <Typography component="legend">
+            {legacy === "jedi" ? (
+              <h2>The Light Side You Joined</h2>
+            ) : (
+              <h2>You Joined The Dark Side </h2>
+            )}
+          </Typography>
           <Rating
+            className={classes.rateBox}
             name="simple-controlled"
             value={value}
             onChange={(event, newValue) => {
@@ -71,7 +75,7 @@ export default function BasicRating({ legacy }) {
             }}
           />
         </Box>
-      </>
+      </div>
     </Grid>
   );
 }
