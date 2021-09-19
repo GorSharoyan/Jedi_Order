@@ -48,11 +48,9 @@ export default function CreateForceUser({ legacy }) {
       }}
       onSubmit={(values) => {
         if (legacy === "jedi") {
-          console.log("ilav");
           createJedi(values, generateForceUserId("jedi"));
           history.push("/");
         } else if (legacy === "sith") {
-          console.log("ilav");
           createSith(values, generateForceUserId("sith"));
           history.push("/");
         }

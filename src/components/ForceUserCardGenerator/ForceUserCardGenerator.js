@@ -20,7 +20,6 @@ import { getAllSiths } from "../../services/firebaseServices/sith.service";
 export default function ForceUserCardGenerator() {
   //imported hooks
   const location = useLocation().pathname;
-  let history = useHistory();
   //my hooks
   const [forceUsers, setForceUsers] = useState([""]);
   const [forceUserSide, setForceUserSide] = useState("");
@@ -28,7 +27,6 @@ export default function ForceUserCardGenerator() {
 
   function handleOnClick() {
     setClick(1);
-    // history.push(`/register`);
   }
 
   useEffect(() => {
@@ -48,42 +46,38 @@ export default function ForceUserCardGenerator() {
   }, []);
 
   return (
-    // <ForceUserSideHookParent>
-    <Grid
-      container
-      direction="row"
-      justifyContent="space-around"
-      alignItems="baseline"
-    >
-      <>
-        {forceUsers.map((element) => {
-          return (
-            <ForceUserMiniCard
-              name={element.name}
-              rank={element.rank}
-              bio={element.bio}
-            />
-          );
-        })}
-      </>
-      <>
-        <Card>
-          {/* <p>Join the {location}</p> */}
-          <CardContent>
-            {/* <CreateForceUser /> */}
-            <Button onClick={handleOnClick}>
-              {click === 0 ? (
-                <AddBoxIcon />
-              ) : click === 1 ? (
-                <CreateForceUser legacy={forceUserSide} />
-              ) : (
-                <>.</>
-              )}
-            </Button>
-          </CardContent>
-        </Card>
-      </>
-    </Grid>
-    // {/* </ForceUserSideHookParent> */}
+    <>
+      {click === 0 ? (
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-around"
+          alignItems="baseline"
+        >
+          <>
+            {forceUsers.map((element) => {
+              return (
+                <ForceUserMiniCard
+                  name={element.name}
+                  rank={element.rank}
+                  bio={element.bio}
+                />
+              );
+            })}
+          </>
+          <>
+            <Card>
+              <CardContent>
+                <Button onClick={handleOnClick}>
+                  <AddBoxIcon />
+                </Button>
+              </CardContent>
+            </Card>
+          </>
+        </Grid>
+      ) : (
+        <CreateForceUser legacy={forceUserSide} />
+      )}
+    </>
   );
 }
