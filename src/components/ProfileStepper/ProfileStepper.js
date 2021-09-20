@@ -41,8 +41,6 @@ export default function ProfileStepper({
     return ["Create Force User", "Upload an Image", "Rate US"];
   }
 
-  console.log("active Step", activeStep);
-
   const isStepOptional = (step) => {
     return step === 1;
   };

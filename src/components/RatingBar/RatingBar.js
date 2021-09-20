@@ -30,8 +30,6 @@ export default function BasicRating({ legacy }) {
   const classes = useStyles();
   const [assetImageLink, setAssetImageLink] = useState("");
   const [value, setValue] = React.useState(2);
-  console.log(legacy);
-  console.log(assetImageLink);
 
   legacy === "jedi"
     ? getAssetUrl("LightSide", "Yoda.png").then((element) => {

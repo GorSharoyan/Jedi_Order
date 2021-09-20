@@ -1,8 +1,10 @@
 import { React, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+
+//Formik
 import { Formik } from "formik";
 
 // import { useLocation } from "react-router";
-import { useHistory } from "react-router-dom";
 
 //lodash
 import _ from "lodash";
@@ -22,6 +24,7 @@ import { createSith } from "../../services/firebaseServices/sith.service";
 
 //utils
 import forceUserValidation from "../../Utils/forceUserValidation.helper";
+import { forceUserValidationSchema } from "../../Utils/forceUserValidation.helper";
 
 let useStyles = makeStyles({
   // formik: {
@@ -49,28 +52,7 @@ export default function CreateForceUser({ legacy }) {
         bio: "",
         profileImage: "",
       }}
-      validate={(values) => {
-        const errors = {};
-        if (values.name === "") {
-          errors.name = "Required";
-        }
-        if (values.rank === "") {
-          errors.rank = "Required";
-        }
-        if (values.age === "") {
-          errors.age = "Required";
-        }
-        if (values.race === "") {
-          errors.race = "Required";
-        }
-        if (values.combat_style === "") {
-          errors.combat_style = "Required";
-        }
-        if (values.bio === "") {
-          errors.bio = "Required";
-        }
-        return errors;
-      }}
+      validationSchema={forceUserValidationSchema}
       onSubmit={(values) => {
         if (legacy === "jedi") {
           createJedi(values, generateForceUserId("jedi"));

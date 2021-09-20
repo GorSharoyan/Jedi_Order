@@ -1,5 +1,8 @@
 import React from "react";
 
+//Formik
+import { ErrorMessage, useField } from "formik";
+
 //UI
 import { Grid, TextField } from "@material-ui/core";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
@@ -9,6 +12,9 @@ import ChildCareIcon from "@material-ui/icons/ChildCare";
 import SportsHandballIcon from "@material-ui/icons/SportsHandball";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { makeStyles } from "@material-ui/core";
+
+//components
+import FormField from "../FormField/FormField";
 
 let useStyles = makeStyles({
   formField: {
@@ -33,7 +39,7 @@ export default function ForceUserForm({
   errors,
 }) {
   const classes = useStyles();
-
+  console.log(values);
   return (
     <Grid
       container
@@ -41,97 +47,72 @@ export default function ForceUserForm({
       justifyContent="center"
       alignItems="center"
     >
-      <div className={classes.formField}>
+      <FormField
+        name="name"
+        label="Name"
+        type="text"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.name}
+        error={errors.name}
+      >
         <AssignmentIndIcon fontSize="large" />
-        <TextField
-          className={classes.textField}
-          name="name"
-          label="Name"
-          id="outlined-basic"
-          type="text"
-          variant="outlined"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.name}
-          error={errors.name}
-        />
-      </div>
-      <div className={classes.formField}>
+      </FormField>
+      <FormField
+        name="rank"
+        label="Rank"
+        type="Text"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.rank}
+        error={errors.rank}
+      >
         <SchoolIcon fontSize="large" />
-        <TextField
-          className={classes.textField}
-          name="rank"
-          label="Rank"
-          id="outlined-basic"
-          type="text"
-          variant="outlined"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.rank}
-          error={errors.rank}
-        />
-      </div>
-      <div className={classes.formField}>
+      </FormField>
+      <FormField
+        name="age"
+        label="Age"
+        type="Number"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.age}
+        error={errors.age}
+      >
         <ChildCareIcon fontSize="large" />
-        <TextField
-          className={classes.textField}
-          name="age"
-          label="Age"
-          id="outlined-basic"
-          type="text"
-          variant="outlined"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.age}
-          error={errors.age}
-        />
-      </div>
-      <div className={classes.formField}>
+      </FormField>
+      <FormField
+        name="race"
+        label="Race"
+        type="Text"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.race}
+        error={errors.race}
+      >
         <FingerprintIcon fontSize="large" />
-        <TextField
-          className={classes.textField}
-          name="race"
-          label="Race"
-          id="outlined-basic"
-          type="text"
-          variant="outlined"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.race}
-          error={errors.race}
-        />
-      </div>
-      <div className={classes.formField}>
+      </FormField>
+      <FormField
+        name="combat_style"
+        label="combat_style"
+        type="Text"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.combat_style}
+        error={errors.combat_style}
+      >
         <SportsHandballIcon fontSize="large" />
-        <TextField
-          className={classes.textField}
-          name="combat_style"
-          label="Combat Style"
-          id="outlined-basic"
-          type="text"
-          variant="outlined"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.combat_style}
-          error={errors.combat_style}
-        />
-      </div>
-      <div className={classes.formField}>
+      </FormField>
+      <FormField
+        name="Bio"
+        label="Bio"
+        type="Text"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.bio}
+        error={errors.bio}
+      >
         <VisibilityIcon fontSize="large" />
-        <TextField
-          className={classes.textField}
-          name="bio"
-          label="Great Power in You I Sense"
-          id="outlined-basic"
-          type="text"
-          variant="outlined"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.bio}
-          error={errors.bio}
-          rows={14}
-        />
-      </div>
+      </FormField>
     </Grid>
   );
 }
