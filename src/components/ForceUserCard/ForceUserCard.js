@@ -19,6 +19,7 @@ import { Grid } from "@material-ui/core";
 //services
 import { getJediById } from "../../services/firebaseServices/jedi.service";
 import { getSithById } from "../../services/firebaseServices/sith.service";
+import { getAssetUrl } from "../../services/firebaseServices/manipulatedStorage.service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,19 +31,24 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%", // 16:9
   },
   avatar: {
-    backgroundColor: red[500],
+    height: "50px",
+    width: "50px",
   },
 }));
 
 export default function ForceUserCard() {
+  //variables
   const pathname = useLocation().pathname;
   const forceUserId = pathname.substring(pathname.lastIndexOf("/") + 1);
   const forceUserSide = forceUserId.substring(
     forceUserId.lastIndexOf("@") + 1,
     forceUserId.length - 1
   );
+  //imported hooks
   const classes = useStyles();
+  //my hooks
   const [forceUser, setForceUser] = useState({});
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   useEffect(() => {
     switch (forceUserSide) {
@@ -50,10 +56,16 @@ export default function ForceUserCard() {
         getJediById(forceUserId).then((result) => {
           setForceUser(result);
         });
+        getAssetUrl("General", "Jedi_Order_Sign.png").then((result) => {
+          setAvatarUrl(result);
+        });
         break;
       case "sith":
         getSithById(forceUserId).then((result) => {
           setForceUser(result);
+        });
+        getAssetUrl("General", "Sith_Order_Sign.png").then((result) => {
+          setAvatarUrl(result);
         });
         break;
     }
@@ -64,7 +76,11 @@ export default function ForceUserCard() {
       <Card className={classes.root}>
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}></Avatar>
+            <Avatar
+              aria-label="recipe"
+              className={classes.avatar}
+              src={avatarUrl}
+            />
           }
           title={forceUser.name}
           subheader={forceUser.rank}
