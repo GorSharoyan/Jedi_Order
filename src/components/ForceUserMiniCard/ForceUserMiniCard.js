@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 //UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,7 +19,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ForceUserMiniCard({ name, rank, bio }) {
+export default function ForceUserMiniCard({
+  name,
+  rank,
+  bio,
+  handlePathGeneration,
+  id,
+}) {
   const classes = useStyles();
 
   return (
@@ -42,8 +47,8 @@ export default function ForceUserMiniCard({ name, rank, bio }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          <Link to="/forceUser"> Learn More</Link>
+        <Button size="small" color="primary" onClick={handlePathGeneration}>
+          More
         </Button>
       </CardActions>
     </Card>

@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router";
+import { generatePath } from "react-router";
+import { useHistory } from "react-router";
 
 //UI
 import { Button, Card, CardContent } from "@material-ui/core";
@@ -19,6 +21,7 @@ import { getAllSiths } from "../../services/firebaseServices/sith.service";
 export default function ForceUserCardGenerator() {
   //imported hooks
   const location = useLocation().pathname;
+  const history = useHistory();
   //my hooks
   const [forceUsers, setForceUsers] = useState([""]);
   const [forceUserSide, setForceUserSide] = useState("");
@@ -60,6 +63,11 @@ export default function ForceUserCardGenerator() {
                   name={element.name}
                   rank={element.rank}
                   bio={element.bio}
+                  handlePathGeneration={() => {
+                    history.push(
+                      generatePath("/forceUser/:id", { id: element.Id })
+                    );
+                  }}
                 />
               );
             })}

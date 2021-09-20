@@ -42,19 +42,20 @@ export default function CreateForceUser({ legacy }) {
   let generateForceUserId = (n) => {
     return _.uniqueId(`@${n}`);
   };
-  const handleErrorMessage = (values) => {
-    let valuesImported = Object.values(values).includes("");
-    console.log(valuesImported);
-    if (valuesImported) {
-      setErrorMessage(true);
-    }
-    if (!valuesImported) {
-      setErrorMessage(false);
-    }
-  };
+  // const handleErrorMessage = (values) => {
+  //   let valuesImported = Object.values(values).includes("");
+  //   console.log(valuesImported);
+  //   if (valuesImported) {
+  //     setErrorMessage(true);
+  //   }
+  //   if (!valuesImported) {
+  //     setErrorMessage(false);
+  //   }
+  // };
   return (
     <Formik
       initialValues={{
+        Id: "",
         forceSide: legacy,
         name: "",
         rank: "",
@@ -67,9 +68,11 @@ export default function CreateForceUser({ legacy }) {
       validationSchema={forceUserValidationSchema}
       onSubmit={(values) => {
         if (legacy === "jedi") {
+          values.Id = generateForceUserId("jedi");
           createJedi(values, generateForceUserId("jedi"));
           history.push("/");
         } else if (legacy === "sith") {
+          values.Id = generateForceUserId("sith");
           createSith(values, generateForceUserId("sith"));
           history.push("/");
         }

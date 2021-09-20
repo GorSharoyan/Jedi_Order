@@ -36,7 +36,7 @@ export default function SwitchRouter() {
         <Route exact path="/register">
           <CreateForceUser />
         </Route>
-        <Route exact path="/forceUser">
+        <Route exact path="/forceUser/id">
           <ForceUserCard />
         </Route>
       </Switch>
