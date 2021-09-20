@@ -1,5 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
+import { useState } from "react";
+import { useLocation } from "react-router";
 
 //UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,6 +15,10 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import { Grid } from "@material-ui/core";
+
+//services
+import { getJediById } from "../../services/firebaseServices/jedi.service";
+import { getSithById } from "../../services/firebaseServices/sith.service";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,8 +34,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ForceUserCard({ name, rank, image, bio }) {
+export default function ForceUserCard() {
+  const pathname = useLocation().pathname;
+  const forceUserId = pathname.substring(pathname.lastIndexOf("/") + 1);
+  const forceUserSide = forceUserId.substring(
+    forceUserId.lastIndexOf("@") + 1,
+    forceUserId.length - 1
+  );
   const classes = useStyles();
+  const [forceUser, setForceUser] = useState({});
+
+  useEffect(() => {
+    switch (forceUserSide) {
+      case "jedi":
+        getJediById(forceUserId).then((result) => {
+          setForceUser(result);
+        });
+        break;
+      case "sith":
+        getSithById(forceUserId).then((result) => {
+          setForceUser(result);
+        });
+        break;
+    }
+  }, []);
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="center">
@@ -38,12 +66,12 @@ export default function ForceUserCard({ name, rank, image, bio }) {
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}></Avatar>
           }
-          title={name}
-          subheader={rank}
+          title={forceUser.name}
+          subheader={forceUser.rank}
         />
         <CardMedia
           className={classes.media}
-          image={image}
+          image={forceUser.profileImage}
           title="Paella dish"
         />
         <CardContent>
@@ -51,7 +79,7 @@ export default function ForceUserCard({ name, rank, image, bio }) {
             <ThumbUpIcon />
           </IconButton>
           <Typography variant="body2" color="textSecondary" component="p">
-            {bio}
+            {forceUser.bio}
           </Typography>
         </CardContent>
       </Card>

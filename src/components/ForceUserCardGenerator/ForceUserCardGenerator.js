@@ -65,7 +65,9 @@ export default function ForceUserCardGenerator() {
                   bio={element.bio}
                   handlePathGeneration={() => {
                     history.push(
-                      generatePath("/forceUser/:id", { id: element.Id })
+                      generatePath("/forceUser/:id", {
+                        id: element.Id,
+                      })
                     );
                   }}
                 />

@@ -24,7 +24,6 @@ export default function ForceUserMiniCard({
   rank,
   bio,
   handlePathGeneration,
-  id,
 }) {
   const classes = useStyles();
 
