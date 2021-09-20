@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 //Formik
 import { Formik } from "formik";
+import { useFormik } from "formik";
 
 // import { useLocation } from "react-router";
 
@@ -35,11 +36,22 @@ let useStyles = makeStyles({
 export default function CreateForceUser({ legacy }) {
   let history = useHistory();
   let classes = useStyles();
+  let [errorMessage, setErrorMessage] = useState(true);
+  // let [error, setError] = useState(false);
 
   let generateForceUserId = (n) => {
     return _.uniqueId(`@${n}`);
   };
-
+  const handleErrorMessage = (values) => {
+    let valuesImported = Object.values(values).includes("");
+    console.log(valuesImported);
+    if (valuesImported) {
+      setErrorMessage(true);
+    }
+    if (!valuesImported) {
+      setErrorMessage(false);
+    }
+  };
   return (
     <Formik
       initialValues={{
@@ -72,11 +84,12 @@ export default function CreateForceUser({ legacy }) {
                 handleChange={props.handleChange}
                 values={props.values}
                 errors={props.errors}
+                errorMessage={errorMessage}
               />
             }
-            activeStepTwo={<ImageUpload />}
+            activeStepTwo={<ImageUpload legacy={legacy} />}
             activeStepThree={<RatingBar legacy={legacy} />}
-            handleFormSubmit={props.handleSubmit}
+            handleFormSubmit={props.handleFormSubmit}
           />
         </form>
       )}

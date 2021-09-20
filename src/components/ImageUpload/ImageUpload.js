@@ -34,7 +34,7 @@ let useStyles = makeStyles({
   },
 });
 
-export default function ImageUpload() {
+export default function ImageUpload({ legacy, forceUserId }) {
   const classes = useStyles();
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -47,9 +47,18 @@ export default function ImageUpload() {
 
   const handleImageUpload = async () => {
     try {
-      await uploadJediImage(image);
-      await setImageUrl(await getJediUserImageUrl(image));
-      await updateJediProfileInfo("@jedi1", "profileImage", imageUrl);
+      switch (legacy) {
+        case "jedi":
+          await uploadJediImage(image);
+          await setImageUrl(await getJediUserImageUrl(image));
+          await updateJediProfileInfo(forceUserId, "profileImage", imageUrl);
+          break;
+        case "sith":
+          await uploadJediImage(image);
+          await setImageUrl(await getSithUserImageUrl(image));
+          await updateSithProfileInfo(forceUserId, "profileImage", imageUrl);
+          break;
+      }
     } catch {
       setError(true);
       console.log(error);

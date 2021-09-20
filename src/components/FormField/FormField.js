@@ -36,7 +36,6 @@ export default function FormField({
   children,
 }) {
   const classes = useStyles();
-  console.log(value);
   return (
     <div className={classes.root}>
       <div className={classes.child}>{children}</div>
@@ -44,7 +43,7 @@ export default function FormField({
         <input
           className={classes.textField}
           name={name}
-          label={label}
+          placeholder={label}
           id="outlined-basic"
           type={type}
           variant="outlined"

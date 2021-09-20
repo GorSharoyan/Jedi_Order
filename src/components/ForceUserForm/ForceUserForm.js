@@ -1,10 +1,7 @@
 import React from "react";
 
-//Formik
-import { ErrorMessage, useField } from "formik";
-
 //UI
-import { Grid, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import SchoolIcon from "@material-ui/icons/School";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
@@ -37,9 +34,9 @@ export default function ForceUserForm({
   handleBlur,
   values,
   errors,
+  errorMessage,
 }) {
   const classes = useStyles();
-  console.log(values);
   return (
     <Grid
       container
@@ -103,7 +100,7 @@ export default function ForceUserForm({
         <SportsHandballIcon fontSize="large" />
       </FormField>
       <FormField
-        name="Bio"
+        name="bio"
         label="Bio"
         type="Text"
         onChange={handleChange}
@@ -113,6 +110,7 @@ export default function ForceUserForm({
       >
         <VisibilityIcon fontSize="large" />
       </FormField>
+      <div>{errorMessage}</div>
     </Grid>
   );
 }
