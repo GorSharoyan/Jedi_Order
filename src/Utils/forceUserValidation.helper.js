@@ -1,6 +1,6 @@
 const forceUserValidation = (values) => {
   const errors = {};
-  const iterableValues = Object.values(values);
+  const iterableValues = Object.keys(values);
   for (let i = 0; i < iterableValues.length; i++) {
     console.log(iterableValues[i]);
     if (iterableValues[i] === "") {

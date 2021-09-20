@@ -50,7 +50,26 @@ export default function CreateForceUser({ legacy }) {
         profileImage: "",
       }}
       validate={(values) => {
-        return forceUserValidation(values);
+        const errors = {};
+        if (values.name === "") {
+          errors.name = "Required";
+        }
+        if (values.rank === "") {
+          errors.rank = "Required";
+        }
+        if (values.age === "") {
+          errors.age = "Required";
+        }
+        if (values.race === "") {
+          errors.race = "Required";
+        }
+        if (values.combat_style === "") {
+          errors.combat_style = "Required";
+        }
+        if (values.bio === "") {
+          errors.bio = "Required";
+        }
+        return errors;
       }}
       onSubmit={(values) => {
         if (legacy === "jedi") {

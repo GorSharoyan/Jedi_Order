@@ -45,7 +45,8 @@ export default function ForceUserForm({
         <AssignmentIndIcon fontSize="large" />
         <TextField
           className={classes.textField}
-          label="name"
+          name="name"
+          label="Name"
           id="outlined-basic"
           type="text"
           variant="outlined"
@@ -53,85 +54,83 @@ export default function ForceUserForm({
           onBlur={handleBlur}
           value={values.name}
           error={errors.name}
-          name="name"
         />
-        {errors.name && <div id="feedback">{errors.name}</div>}
       </div>
       <div className={classes.formField}>
         <SchoolIcon fontSize="large" />
         <TextField
           className={classes.textField}
-          label="rank"
+          name="rank"
+          label="Rank"
           id="outlined-basic"
           type="text"
           variant="outlined"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.rank}
-          name="rank"
+          error={errors.rank}
         />
-        {errors.rank && <div id="feedback">{errors.rank}</div>}
       </div>
       <div className={classes.formField}>
         <ChildCareIcon fontSize="large" />
         <TextField
           className={classes.textField}
-          label="age"
+          name="age"
+          label="Age"
           id="outlined-basic"
           type="text"
           variant="outlined"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.age}
-          name="age"
+          error={errors.age}
         />
-        {errors.age && <div id="feedback">{errors.age}</div>}
       </div>
       <div className={classes.formField}>
         <FingerprintIcon fontSize="large" />
         <TextField
           className={classes.textField}
-          label="race"
+          name="race"
+          label="Race"
           id="outlined-basic"
           type="text"
           variant="outlined"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.race}
-          name="race"
+          error={errors.race}
         />
-        {errors.race && <div id="feedback">{errors.race}</div>}
       </div>
       <div className={classes.formField}>
         <SportsHandballIcon fontSize="large" />
         <TextField
           className={classes.textField}
-          label="combat style"
+          name="combat_style"
+          label="Combat Style"
           id="outlined-basic"
           type="text"
           variant="outlined"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.combat_style}
-          name="combat_style"
+          error={errors.combat_style}
         />
-        {errors.combat_style && <div id="feedback">{errors.combat_style}</div>}
       </div>
       <div className={classes.formField}>
         <VisibilityIcon fontSize="large" />
         <TextField
           className={classes.textField}
-          label="The Great Power in you,I sense"
+          name="bio"
+          label="Great Power in You I Sense"
           id="outlined-basic"
           type="text"
           variant="outlined"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.bio}
-          name="bio"
+          error={errors.bio}
           rows={14}
         />
-        {errors.bio && <div id="feedback">{errors.bio}</div>}
       </div>
     </Grid>
   );
