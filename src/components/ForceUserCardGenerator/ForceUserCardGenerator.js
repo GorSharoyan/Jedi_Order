@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router";
-import { useHistory } from "react-router";
 
 //UI
 import { Button, Card, CardContent } from "@material-ui/core";
