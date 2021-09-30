@@ -1,5 +1,6 @@
 import { React, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 //Formik
 import { Formik } from "formik";
@@ -34,14 +35,14 @@ let useStyles = makeStyles({
 });
 
 export default function CreateForceUser({ legacy }) {
+  //imported hooks
   let history = useHistory();
   let classes = useStyles();
-  let [errorMessage, setErrorMessage] = useState(true);
+  //my hooks
+  const [errorMessage, setErrorMessage] = useState(true);
+  const [forceUserId, setforceUserId] = useState("");
   // let [error, setError] = useState(false);
-
-  let generateForceUserId = (n) => {
-    return _.uniqueId(`@${n}`);
-  };
+  // console.log(legacy);
   // const handleErrorMessage = (values) => {
   //   let valuesImported = Object.values(values).includes("");
   //   console.log(valuesImported);
@@ -52,10 +53,30 @@ export default function CreateForceUser({ legacy }) {
   //     setErrorMessage(false);
   //   }
   // };
+
+  let generateForceUserId = (n) => {
+    return _.uniqueId(`@${n}`);
+  };
+
+  useEffect(() => {
+    switch (legacy) {
+      case "jedi":
+        console.log("here");
+        setforceUserId(generateForceUserId("jedi"));
+        console.log(forceUserId);
+        break;
+      case "sith":
+        console.log("here");
+        setforceUserId(generateForceUserId("sith"));
+        console.log("ID gen", forceUserId);
+        break;
+    }
+  }, []);
+
   return (
     <Formik
       initialValues={{
-        Id: "",
+        Id: forceUserId,
         forceSide: legacy,
         name: "",
         rank: "",
@@ -67,14 +88,20 @@ export default function CreateForceUser({ legacy }) {
       }}
       validationSchema={forceUserValidationSchema}
       onSubmit={(values) => {
-        if (legacy === "jedi") {
-          values.Id = generateForceUserId("jedi");
-          createJedi(values, generateForceUserId("jedi"));
-          history.push("/");
-        } else if (legacy === "sith") {
-          values.Id = generateForceUserId("sith");
-          createSith(values, generateForceUserId("sith"));
-          history.push("/");
+        console.log("click");
+        switch (legacy) {
+          case "jedi":
+            console.log(values);
+            createJedi(values, forceUserId);
+
+            console.log("ilav");
+            break;
+          case "sith":
+            console.log(values);
+            createSith(values, forceUserId);
+
+            console.log("ilav");
+            break;
         }
       }}
     >
@@ -90,9 +117,14 @@ export default function CreateForceUser({ legacy }) {
                 errorMessage={errorMessage}
               />
             }
-            activeStepTwo={<ImageUpload legacy={legacy} />}
+            activeStepTwo={
+              <ImageUpload
+                legacy={legacy}
+                profileImage={props.values.profileImage}
+              />
+            }
             activeStepThree={<RatingBar legacy={legacy} />}
-            handleFormSubmit={props.handleFormSubmit}
+            handleFormSubmit={props.handleSubmit}
           />
         </form>
       )}

@@ -34,7 +34,7 @@ let useStyles = makeStyles({
   },
 });
 
-export default function ImageUpload({ legacy, forceUserId }) {
+export default function ImageUpload({ legacy, forceUserId, profileImage }) {
   const classes = useStyles();
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -83,6 +83,7 @@ export default function ImageUpload({ legacy, forceUserId }) {
           id="upload"
           type="file"
           onChange={handleImageInput}
+          value={profileImage}
         />
       </div>
     </Card>

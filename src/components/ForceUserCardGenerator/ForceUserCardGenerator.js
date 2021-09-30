@@ -5,6 +5,9 @@ import { useLocation } from "react-router";
 import { generatePath } from "react-router";
 import { useHistory } from "react-router";
 
+//Lodash
+import _ from "lodash";
+
 //UI
 import { Button, Card, CardContent } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
@@ -25,27 +28,31 @@ export default function ForceUserCardGenerator() {
   //my hooks
   const [forceUsers, setForceUsers] = useState([""]);
   const [forceUserSide, setForceUserSide] = useState("");
+  const [forceUserId, setforceUserId] = useState("");
   const [click, setClick] = useState(0);
 
   function handleOnClick() {
     setClick(1);
   }
 
-  useEffect(() => {
-    if (location === "/lightSide") {
+  // useEffect(() => {
+  switch (location) {
+    case "/lightSide":
       getAllJedis().then((element) => {
         let jedis = Object.values(element);
         setForceUsers(jedis);
         setForceUserSide("jedi");
       });
-    } else if (location === "/darkSide") {
+      break;
+    case "/darkSide":
       getAllSiths().then((element) => {
         let siths = Object.values(element);
         setForceUsers(siths);
         setForceUserSide("sith");
       });
-    }
-  }, []);
+      break;
+  }
+  // });
 
   return (
     <>

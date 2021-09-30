@@ -44,7 +44,7 @@ export default function StepperButtons({
         </>
         <div className={classes.buttons}>{children}</div>
         <>
-          {activeStep >= steps.length - 1 ? (
+          {activeStep === 2 ? (
             <Button
               variant="contained"
               color="primary"
@@ -53,11 +53,20 @@ export default function StepperButtons({
             >
               Finish
             </Button>
-          ) : (
+          ) : activeStep === 1 ? (
             <Button
               variant="contained"
               color="primary"
               onClick={handleNext}
+              className={classes.button}
+            >
+              <NavigateNextIcon />
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={(handleFormSubmit, handleNext)}
               className={classes.button}
             >
               <NavigateNextIcon />
@@ -68,3 +77,36 @@ export default function StepperButtons({
     </div>
   );
 }
+// {activeStep === 0 ? (
+//   <>
+//     <Button
+//       variant="contained"
+//       color="primary"
+//       disabled={activeStep === 0}
+//       onClick={handleBack}
+//       className={classes.button}
+//     >
+//       <ArrowBackIosIcon />
+//     </Button>
+//   </>
+// ) : activeStep === 1 ? (
+//   <Button
+//     variant="contained"
+//     color="primary"
+//     onClick={handleNext}
+//     className={classes.button}
+//   >
+//     <NavigateNextIcon />
+//   </Button>
+// ) : activeStep === 2 ? (
+//   <Button
+//     variant="contained"
+//     color="primary"
+//     className={classes.button}
+//     onClick={handleFormSubmit}
+//   >
+//     Finish
+//   </Button>
+// ) : (
+//   <></>
+// )}

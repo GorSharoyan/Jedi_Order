@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import { Grid } from "@material-ui/core";
+import { CardActionArea } from "@material-ui/core";
 
 //services
 import { getJediById } from "../../services/firebaseServices/jedi.service";
@@ -23,7 +24,9 @@ import { getAssetUrl } from "../../services/firebaseServices/manipulatedStorage.
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "1500px",
+    width: "800px",
+    height: "500px",
+    padding: "25px",
     border: "3px solid green",
   },
   media: {
@@ -34,6 +37,10 @@ const useStyles = makeStyles((theme) => ({
     height: "50px",
     width: "50px",
   },
+  // cardcontent: {
+  //   height: "200px",
+  //   width: "200px",
+  // },
 }));
 
 export default function ForceUserCard() {
@@ -74,6 +81,9 @@ export default function ForceUserCard() {
   return (
     <Grid container direction="row" justifyContent="center" alignItems="center">
       <Card className={classes.root}>
+        <img src={avatarUrl} />
+      </Card>
+      <Card className={classes.root}>
         <CardHeader
           avatar={
             <Avatar
@@ -88,9 +98,9 @@ export default function ForceUserCard() {
         <CardMedia
           className={classes.media}
           image={forceUser.profileImage}
-          title="Paella dish"
+          title="Force User Image"
         />
-        <CardContent>
+        <CardContent className={classes.cardcontent}>
           <IconButton aria-label="add to favorites">
             <ThumbUpIcon />
           </IconButton>
@@ -98,6 +108,9 @@ export default function ForceUserCard() {
             {forceUser.bio}
           </Typography>
         </CardContent>
+      </Card>
+      <Card>
+        <CardMedia></CardMedia>
       </Card>
     </Grid>
   );
