@@ -93,14 +93,10 @@ export default function CreateForceUser({ legacy }) {
           case "jedi":
             console.log(values);
             createJedi(values, forceUserId);
-
-            console.log("ilav");
             break;
           case "sith":
             console.log(values);
             createSith(values, forceUserId);
-
-            console.log("ilav");
             break;
         }
       }}
