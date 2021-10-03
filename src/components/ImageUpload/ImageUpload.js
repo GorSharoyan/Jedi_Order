@@ -7,9 +7,11 @@ import { makeStyles } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { Card } from "@material-ui/core";
-// import { Grid } from "@material-ui/core";
+import Grid from "@mui/material/Grid";
+
 //components
-import CircularProgress from "./CircularProgress";
+import CircularIntegration from "./CircularProgress";
+
 //services
 import { uploadJediImage } from "../../services/firebaseServices/jedi.service";
 import { getJediUserImageUrl } from "../../services/firebaseServices/jedi.service";
@@ -42,6 +44,7 @@ export default function ImageUpload({ legacy, forceUserId, profileImage }) {
   const [error, setError] = useState(null);
 
   console.log(forceUserId);
+  console.log(imageUrl);
 
   const handleImageInput = async ({ target: { files } }) => {
     let img = files[0];
@@ -70,20 +73,21 @@ export default function ImageUpload({ legacy, forceUserId, profileImage }) {
   };
 
   return (
-    <>
-      <>
-        <Card className={classes.root}>
-          <div className={classes.cardContent}>
-            <label for="upload">
-              <Button
-                variant="contained"
-                color="default"
-                startIcon={<CloudUploadIcon />}
-                onClick={handleImageUpload}
-              >
-                Upload
-              </Button>
-            </label>
+    <div className={classes.root}>
+      <div className={classes.cardContent}>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="baseline"
+        >
+          <div>
+            <CircularIntegration
+              imageUrl={imageUrl}
+              onClick={handleImageUpload}
+            />
+          </div>
+          <div>
             <input
               accept="image/*"
               id="upload"
@@ -92,11 +96,8 @@ export default function ImageUpload({ legacy, forceUserId, profileImage }) {
               value={profileImage}
             />
           </div>
-        </Card>
-      </>
-      <>
-        <CircularProgress />
-      </>
-    </>
+        </Grid>
+      </div>
+    </div>
   );
 }
