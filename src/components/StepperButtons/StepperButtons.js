@@ -25,7 +25,6 @@ export default function StepperButtons({
   //imported hooks
   const classes = useStyles();
   const history = useHistory();
-  console.log(activeStep);
 
   async function handleSubmitFormData() {
     await handleFormSubmit();

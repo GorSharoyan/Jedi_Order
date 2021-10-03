@@ -40,7 +40,10 @@ export default function CreateForceUser({ legacy }) {
   let classes = useStyles();
   //my hooks
   const [errorMessage, setErrorMessage] = useState(true);
-  const [forceUserId, setforceUserId] = useState("");
+  const [forceUserId, setForceUserId] = useState("");
+
+  console.log(forceUserId);
+
   // let [error, setError] = useState(false);
   // console.log(legacy);
   // const handleErrorMessage = (values) => {
@@ -61,14 +64,10 @@ export default function CreateForceUser({ legacy }) {
   useEffect(() => {
     switch (legacy) {
       case "jedi":
-        console.log("here");
-        setforceUserId(generateForceUserId("jedi"));
-        console.log(forceUserId);
+        setForceUserId(generateForceUserId("jedi"));
         break;
       case "sith":
-        console.log("here");
-        setforceUserId(generateForceUserId("sith"));
-        console.log("ID gen", forceUserId);
+        setForceUserId(generateForceUserId("sith"));
         break;
     }
   }, []);
@@ -76,7 +75,7 @@ export default function CreateForceUser({ legacy }) {
   return (
     <Formik
       initialValues={{
-        Id: forceUserId,
+        Id: "",
         forceSide: legacy,
         name: "",
         rank: "",
@@ -88,14 +87,13 @@ export default function CreateForceUser({ legacy }) {
       }}
       validationSchema={forceUserValidationSchema}
       onSubmit={(values) => {
-        console.log("click");
         switch (legacy) {
           case "jedi":
-            console.log(values);
+            values.Id = forceUserId;
             createJedi(values, forceUserId);
             break;
           case "sith":
-            console.log(values);
+            values.Id = forceUserId;
             createSith(values, forceUserId);
             break;
         }
@@ -115,6 +113,7 @@ export default function CreateForceUser({ legacy }) {
             }
             activeStepTwo={
               <ImageUpload
+                forceUserId={forceUserId}
                 legacy={legacy}
                 profileImage={props.values.profileImage}
               />

@@ -28,7 +28,6 @@ export default function ForceUserCardGenerator() {
   //my hooks
   const [forceUsers, setForceUsers] = useState([""]);
   const [forceUserSide, setForceUserSide] = useState("");
-  const [forceUserId, setforceUserId] = useState("");
   const [click, setClick] = useState(0);
 
   function handleOnClick() {
@@ -41,15 +40,15 @@ export default function ForceUserCardGenerator() {
         getAllJedis().then((element) => {
           let jedis = Object.values(element);
           setForceUsers(jedis);
-          setForceUserSide("jedi");
         });
+        setForceUserSide("jedi");
         break;
       case "/darkSide":
         getAllSiths().then((element) => {
           let siths = Object.values(element);
           setForceUsers(siths);
-          setForceUserSide("sith");
         });
+        setForceUserSide("sith");
         break;
     }
   }, []);

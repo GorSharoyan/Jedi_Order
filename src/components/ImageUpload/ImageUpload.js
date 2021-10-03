@@ -40,6 +40,8 @@ export default function ImageUpload({ legacy, forceUserId, profileImage }) {
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState(null);
 
+  console.log(forceUserId);
+
   const handleImageInput = async ({ target: { files } }) => {
     let img = files[0];
     await setImage(img);
@@ -51,6 +53,7 @@ export default function ImageUpload({ legacy, forceUserId, profileImage }) {
         case "jedi":
           await uploadJediImage(image);
           await setImageUrl(await getJediUserImageUrl(image));
+          console.log("image url", imageUrl);
           await updateJediProfileInfo(forceUserId, "profileImage", imageUrl);
           break;
         case "sith":
