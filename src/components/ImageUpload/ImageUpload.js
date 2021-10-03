@@ -8,7 +8,8 @@ import { Button } from "@material-ui/core";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { Card } from "@material-ui/core";
 // import { Grid } from "@material-ui/core";
-
+//components
+import CircularProgress from "./CircularProgress";
 //services
 import { uploadJediImage } from "../../services/firebaseServices/jedi.service";
 import { getJediUserImageUrl } from "../../services/firebaseServices/jedi.service";
@@ -69,26 +70,33 @@ export default function ImageUpload({ legacy, forceUserId, profileImage }) {
   };
 
   return (
-    <Card className={classes.root}>
-      <div className={classes.cardContent}>
-        <label for="upload">
-          <Button
-            variant="contained"
-            color="default"
-            startIcon={<CloudUploadIcon />}
-            onClick={handleImageUpload}
-          >
-            Upload
-          </Button>
-        </label>
-        <input
-          accept="image/*"
-          id="upload"
-          type="file"
-          onChange={handleImageInput}
-          value={profileImage}
-        />
-      </div>
-    </Card>
+    <>
+      <>
+        <Card className={classes.root}>
+          <div className={classes.cardContent}>
+            <label for="upload">
+              <Button
+                variant="contained"
+                color="default"
+                startIcon={<CloudUploadIcon />}
+                onClick={handleImageUpload}
+              >
+                Upload
+              </Button>
+            </label>
+            <input
+              accept="image/*"
+              id="upload"
+              type="file"
+              onChange={handleImageInput}
+              value={profileImage}
+            />
+          </div>
+        </Card>
+      </>
+      <>
+        <CircularProgress />
+      </>
+    </>
   );
 }
