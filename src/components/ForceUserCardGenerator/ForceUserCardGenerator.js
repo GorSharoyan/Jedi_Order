@@ -35,24 +35,24 @@ export default function ForceUserCardGenerator() {
     setClick(1);
   }
 
-  // useEffect(() => {
-  switch (location) {
-    case "/lightSide":
-      getAllJedis().then((element) => {
-        let jedis = Object.values(element);
-        setForceUsers(jedis);
-        setForceUserSide("jedi");
-      });
-      break;
-    case "/darkSide":
-      getAllSiths().then((element) => {
-        let siths = Object.values(element);
-        setForceUsers(siths);
-        setForceUserSide("sith");
-      });
-      break;
-  }
-  // });
+  useEffect(() => {
+    switch (location) {
+      case "/lightSide":
+        getAllJedis().then((element) => {
+          let jedis = Object.values(element);
+          setForceUsers(jedis);
+          setForceUserSide("jedi");
+        });
+        break;
+      case "/darkSide":
+        getAllSiths().then((element) => {
+          let siths = Object.values(element);
+          setForceUsers(siths);
+          setForceUserSide("sith");
+        });
+        break;
+    }
+  }, []);
 
   return (
     <>
